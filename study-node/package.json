@@ -1,0 +1,24 @@
+{
+  "name": "study-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "packageManager": "pnpm@7.0.0",
+  "scripts": {
+    "starts": "pnpm studo --filter core",
+    "ack": "pnpm -C ./packages/core studo",
+    "bins": "bin/cop.js"
+  },
+  "bin": {
+    "cop": "./bin/cop.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@types/node": "^17.0.31",
+    "minimist": "^1.2.6",
+    "pnpm": "^7.0.0"
+  }
+}

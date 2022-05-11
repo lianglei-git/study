@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./socket.io.js"></script>
+</head>
+
+<body onbeforeunload="CheckUnsave();">
+    <button id="connect">点击链接socket</button>
+    <button id="open">打开新页面</button>
+    <button id="close">手动断开</button>
+    <script>
+        let socket;
+        function CheckUnsave() {
+        // //     socket.emit('unload');
+        // //     // alert("您上传的东西尚未保存，请保存后再离开页面");
+        // //     // return false;
+        // // socket.emit('unload');
+        }
+        // document.body.onbeforeunload = () => {
+            // socket.emit('unload');
+        // }
+        // document.body.onunload = () => {
+        //     socket.emit('unload');
+        // }
+        // window.onbeforeunload = () =>  {
+        //     socket.emit('unload');
+        // }
+        setTimeout(() => {
+            let port = document.getElementById('port').textContent;
+             socket = io('http://127.0.0.1:' + port)
+            socket.on('connect', () => {
+                console.log('连接成功');
+                socket.emit('init')
+            });
+            
+            
+
+            document.getElementById('close').onclick = () => {
+                socket.emit('unload')
+                socket.close();
+                socket.disconnect();
+            }
+
+            document.getElementById('open').onclick = () => {
+                window.open('http://127.0.0.1:' + (+port + 1) + '/a')
+            }
+        }, 50)
+    </script>

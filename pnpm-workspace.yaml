@@ -1,0 +1,8 @@
+packages:
+  # all packages in subdirs of packages/ and components/
+  - study-algorithm
+  - study-babel
+  - study-go
+  - study-node
+  - study-typescript
+  - study-websocket

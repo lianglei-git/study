@@ -1,0 +1,19 @@
+lockfileVersion: 5.4
+
+importers:
+
+  packages/core:
+    specifiers:
+      modules: workspace:^1.0.0
+      sp-isoffline: ^0.0.5
+      test: workspace:^1.0.0
+    dependencies:
+      modules: link:../modules
+      sp-isoffline: 0.0.5
+      test: link:../test
+
+packages:
+
+  /sp-isoffline/0.0.5:
+    resolution: {integrity: sha512-ajGeq+Bi14eFU5IK/1jADbqPJ100JxX7DuLDygeP8WonlWnBXZX4gKjY+uX+8oYeZruEt7xlKAplkx6aMkNedg==}
+    dev: false

@@ -1,0 +1,18 @@
+{
+  "name": "core",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "studo": "node index.js"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "modules": "workspace:^1.0.0",
+    "sp-isoffline": "^0.0.5",
+    "test": "workspace:^1.0.0"
+  }
+}

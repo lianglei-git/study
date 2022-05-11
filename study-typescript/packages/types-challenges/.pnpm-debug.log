@@ -1,0 +1,40 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1,
+    "workspacePrefix": "/Users/apple/Desktop/梅西/frontend/beforeschool/study/study-typescript"
+  },
+  "1 debug pnpm:package-manifest": {
+    "initial": {
+      "name": "types-challenges",
+      "version": "1.0.0",
+      "description": "",
+      "main": "index.js",
+      "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+      },
+      "keywords": [],
+      "author": "",
+      "license": "ISC"
+    },
+    "prefix": "/Users/apple/Desktop/梅西/frontend/beforeschool/study/study-typescript/packages/types-challenges"
+  },
+  "2 debug pnpm:context": {
+    "currentLockfileExists": false,
+    "storeDir": "/Users/apple/Library/pnpm/store/v3",
+    "virtualStoreDir": "/Users/apple/Desktop/梅西/frontend/beforeschool/study/study-typescript/node_modules/.pnpm"
+  },
+  "3 debug pnpm:stage": {
+    "prefix": "/Users/apple/Desktop/梅西/frontend/beforeschool/study/study-typescript",
+    "stage": "resolution_started"
+  },
+  "4 error pnpm": {
+    "code": "ERR_PNPM_SPEC_NOT_SUPPORTED_BY_ANY_RESOLVER",
+    "pkgsStack": [],
+    "err": {
+      "name": "pnpm",
+      "message": "@type-challenges isn't supported by any available resolver.",
+      "code": "ERR_PNPM_SPEC_NOT_SUPPORTED_BY_ANY_RESOLVER",
+      "stack": "pnpm: @type-challenges isn't supported by any available resolver.\n    at Object.resolve (/usr/local/lib/node_modules/pnpm/dist/pnpm.cjs:84665:17)\n    at async run (/usr/local/lib/node_modules/pnpm/dist/pnpm.cjs:91126:23)"
+    }
+  }
+}
