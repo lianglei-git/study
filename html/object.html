@@ -1,0 +1,88 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="input">
+</body>
+<script>
+    let input = document.getElementById("input");
+    console.log(window.getComputedStyle(input).width)
+    let obj = {
+        a:1,b:2,
+        set c(x) {
+            console.log(x);
+            c =x
+        },
+        get c(){
+            console.log(c)
+            return c;
+        }
+    }
+    // obj.c = 3;
+    // console.log(Object.getOwnPropertyDescriptor(obj,a))
+
+    var sym = Symbol('hello');
+    console.log(sym.description)
+    var a = {
+        [sym]:1
+    }
+    a[sym] = "你哈珀";
+    Object.defineProperty(a,sym,{value:"你好啊"})
+    console.log(a);
+
+    let objsym = {
+        [Symbol('asd')]:123,[Symbol('暂时的离开·')]:567,a:66
+    }
+    let arrsym = [Symbol('急急急'),Symbol('，啊啊是你的')]
+    console.log(Reflect.ownKeys(arrsym))
+
+
+    // 手写代码
+     
+    // 防抖 
+    function fangdou(fn,time){
+        var timer = null;
+        return function() {
+            if(timer){
+                clearTimeout(timer)
+            }
+            timer = setTimeout(() => {
+                fn.call(this,...arguments)
+            },time)
+        }
+    }
+
+    function jieliu(fn,time) {
+        var timer = null;
+        var flag = true;
+        return function() {
+            // if(timer){ 
+            //     clearTimeout(timer)
+            // }
+            if(!flag) return;
+            flag= false
+            clearTimeout(timer);
+            timer = setTimeout(() => {
+                fn.call(this,...arguments);
+                flag = true
+            },time)
+        }
+    }
+    console.log(document.getElementById('input'))
+    var change = (val) => {
+        console.log(val)
+    }
+    var fff =  fangdou(change,1000);
+    var nn = jieliu(change,1000)
+    document.getElementById('input').addEventListener('input',(e) => {
+        nn(e.target.value)
+    })
+
+
+</script>
+</html>

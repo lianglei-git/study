@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>正则学习</title>
+</head>
+<body>
+    
+</body>
+<script>
+let { log} = console;
+// 字符串的正则方法
+var  str = 'abcdefg';
+var reg = /c/g;
+log(reg.test(str))
+let newstr = str.split(/d/g);
+log(newstr)
+
+let arr = Array.from(new Array(6),() => new Array(5).fill(0));
+log(arr)
+let arrof = Array.from(Array.of(6),() => Array.of(6).fill(false));
+log(arrof)
+</script>
+</html>

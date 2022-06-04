@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音乐动效</title>
+    <style>
+        .checkbox {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border: 1px solid #ccc;
+            border-radius: 2px;
+
+        }
+
+        .checkbox.active {
+            background-color: #0075ff;
+            border: 1px solid #0075ff;
+            position: relative;
+        }
+
+        .checkbox.active::after {
+            position: absolute;
+            top: -2px;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            margin: auto;
+            display: inline-block;
+            content: "";
+            width: 3px;
+            height: 8px;
+            border-color: #fff;
+            border-style: solid;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+        html,
+        body {
+            padding: 0;
+            margin: 0;
+            background: url('https://s1.ax1x.com/2020/07/18/UgECes.jpg');
+            background-size: cover;
+            background-position: center;
+        }
+
+        canvas {
+            position: absolute;
+            left: 0;
+            top: 0;
+            z-index: -1;
+        }
+
+        .wrapper {
+            position: relative;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(8px);
+            flex-direction: column;
+        }
+
+        .music-info {
+            margin-top: -96px;
+            color: white;
+            text-align: center;
+            margin-bottom: 16px;
+
+
+
+        }
+
+        .music-info.artist {
+            margin-bottom: 8px;
+            font-size: 14px;
+            line-height: 18px;
+            margin-top: 0;
+        }
+
+        .music-info.name {
+            line-height: 30px;
+            font-size: 26px;
+            margin-bottom: 2px;
+        }
+
+        .cdWrapper {
+            --play-state: paused;
+
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .icon-pause {
+            display: none;
+        }
+
+        .icon-play {
+            display: block;
+        }
+
+        .playing {
+            --play-state: running;
+
+
+
+
+        }
+
+        .playing.icon-pause {
+            display: block;
+        }
+
+        .playing.icon-play {
+            display: none;
+        }
+
+        .icon {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            stroke-width: 0;
+            stroke: currentColor;
+            fill: currentColor;
+            color: white;
+            font-size: 100px;
+            position: absolute;
+        }
+
+        .cd {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            animation: rotate 50s infinite linear;
+            animation-play-state: var(--play-state)
+        }
+
+        @keyframes rotate {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(359deg);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <script type="text/javascript" src="https://cdn.bootcdn.net/ajax/libs/simplex-noise/2.4.0/simplex-noise.js"></script>
+    <span class="checkbox active"></span>
+
+    <audio id="audio" loop src="https://indiryuklemp3.org/mp3_files/mekanin-sahibi-4iTnxaLPtG-0.mp3"></audio>
+    <div class="wrapper">
+        <header class="music-info">
+            <h2 class="name">Mekanın Sahibi</h2>
+            <p class="artist">Norm Ender</p>
+        </header>
+
+        <div class="cdWrapper" id="playControl">
+            <img class="cd" alt="cd" src="https://s1.ax1x.com/2020/07/18/UgECes.jpg"></img>
+            <svg class="icon">
+                <use class="icon-pause" xlink:href="#icon-pause"></use>
+                <use class="icon-play" xlink:href="#icon-play"></use>
+            </svg>
+        </div>
+        <canvas id="canvas"></canvas>
+    </div>
+    <svg style="display: none" xmlns="http://www.w3.org/2000/svg" hidden xmlns:xlink="http://www.w3.org/1999/xlink">
+        <defs>
+          <symbol id="icon-play" viewBox="0 0 32 32">
+            <title>icon-play</title>
+            <path d="M21.216 15.168l-7.616-5.088c-0.672-0.416-1.504 0.032-1.504 0.832v10.176c0 0.8 0.896 1.248 1.504 0.832l7.616-5.088c0.576-0.416 0.576-1.248 0-1.664z"></path>
+            <path d="M13.056 22.4c-0.224 0-0.416-0.064-0.608-0.16-0.448-0.224-0.704-0.672-0.704-1.152v-10.176c0-0.48 0.256-0.928 0.672-1.152s0.928-0.224 1.344 0.064l7.616 5.088c0.384 0.256 0.608 0.672 0.608 1.088s-0.224 0.864-0.608 1.088l-7.616 5.088c-0.192 0.16-0.448 0.224-0.704 0.224zM13.056 10.272c-0.096 0-0.224 0.032-0.32 0.064-0.224 0.128-0.352 0.32-0.352 0.576v10.176c0 0.256 0.128 0.48 0.352 0.576 0.224 0.128 0.448 0.096 0.64-0.032l7.616-5.088c0.192-0.128 0.288-0.32 0.288-0.544s-0.096-0.416-0.288-0.544l-7.584-5.088c-0.096-0.064-0.224-0.096-0.352-0.096z"></path>
+            <path d="M16 0.32c-8.64 0-15.68 7.040-15.68 15.68s7.040 15.68 15.68 15.68 15.68-7.040 15.68-15.68-7.040-15.68-15.68-15.68zM16 29.216c-7.296 0-13.216-5.92-13.216-13.216s5.92-13.216 13.216-13.216 13.216 5.92 13.216 13.216-5.92 13.216-13.216 13.216z"></path>
+            <path d="M16 32c-8.832 0-16-7.168-16-16s7.168-16 16-16 16 7.168 16 16-7.168 16-16 16zM16 0.672c-8.448 0-15.328 6.88-15.328 15.328s6.88 15.328 15.328 15.328c8.448 0 15.328-6.88 15.328-15.328s-6.88-15.328-15.328-15.328zM16 29.568c-7.488 0-13.568-6.080-13.568-13.568s6.080-13.568 13.568-13.568c7.488 0 13.568 6.080 13.568 13.568s-6.080 13.568-13.568 13.568zM16 3.104c-7.104 0-12.896 5.792-12.896 12.896s5.792 12.896 12.896 12.896c7.104 0 12.896-5.792 12.896-12.896s-5.792-12.896-12.896-12.896z"></path>
+          </symbol>
+          <symbol id="icon-pause" viewBox="0 0 32 32">
+            <title>icon-pause</title>
+            <path d="M16 0.32c-8.64 0-15.68 7.040-15.68 15.68s7.040 15.68 15.68 15.68 15.68-7.040 15.68-15.68-7.040-15.68-15.68-15.68zM16 29.216c-7.296 0-13.216-5.92-13.216-13.216s5.92-13.216 13.216-13.216 13.216 5.92 13.216 13.216-5.92 13.216-13.216 13.216z"></path>
+            <path d="M16 32c-8.832 0-16-7.168-16-16s7.168-16 16-16 16 7.168 16 16-7.168 16-16 16zM16 0.672c-8.448 0-15.328 6.88-15.328 15.328s6.88 15.328 15.328 15.328c8.448 0 15.328-6.88 15.328-15.328s-6.88-15.328-15.328-15.328zM16 29.568c-7.488 0-13.568-6.080-13.568-13.568s6.080-13.568 13.568-13.568c7.488 0 13.568 6.080 13.568 13.568s-6.080 13.568-13.568 13.568zM16 3.104c-7.104 0-12.896 5.792-12.896 12.896s5.792 12.896 12.896 12.896c7.104 0 12.896-5.792 12.896-12.896s-5.792-12.896-12.896-12.896z"></path>
+            <path d="M12.16 22.336v0c-0.896 0-1.6-0.704-1.6-1.6v-9.472c0-0.896 0.704-1.6 1.6-1.6v0c0.896 0 1.6 0.704 1.6 1.6v9.504c0 0.864-0.704 1.568-1.6 1.568z"></path>
+            <path d="M19.84 22.336v0c-0.896 0-1.6-0.704-1.6-1.6v-9.472c0-0.896 0.704-1.6 1.6-1.6v0c0.896 0 1.6 0.704 1.6 1.6v9.504c0 0.864-0.704 1.568-1.6 1.568z"></path>
+          </symbol>
+        </defs>
+      </svg>
+    <script type="text/javascript">
+        const canvas = {
+            playing: false,
+            toggle() {
+                this.playing = !this.playing;
+            },
+            init() {
+                this.ele = document.querySelector("#canvas");
+                this.resize();
+                window.addEventListener("resize", () => this.resize(), false);
+                this.ctx = this.ele.getContext("2d");
+                return this.ctx;
+            },
+            onResize(callback) {
+                this.resizeCallback = callback;
+            },
+            resize() {
+                this.width = this.ele.width = window.innerWidth * 2;
+                this.height = this.ele.height = window.innerHeight * 2;
+                this.ele.style.width = this.ele.width * 0.5 + "px";
+                this.ele.style.height = this.ele.height * 0.5 + "px";
+                this.ctx = this.ele.getContext("2d");
+                this.ctx.scale(2, 2);
+                this.resizeCallback && this.resizeCallback();
+            },
+            run(callback) {
+                requestAnimationFrame(() => {
+                    this.run(callback);
+                });
+                this.playing && callback(this.ctx);
+            },
+        };
+    
+        const ctx = canvas.init();
+    
+        let objects = [];
+    
+        class Wave {
+            vectors = [];
+            constructor(color) {
+                this.color = color;
+                this.noise = new SimplexNoise(Math.random());
+            }
+    
+            drawLine() {
+                ctx.strokeStyle = this.color;
+                ctx.beginPath();
+                for (let i = 0; i < this.vectors.length; i++) {
+                    const {
+                        x,
+                        y
+                    } = this.vectors[i];
+                    ctx.lineCap = "round";
+                    ctx.lineWidth = 2;
+                    if (i === 0) {
+                        ctx.moveTo(x, y);
+                    } else {
+                        ctx.lineTo(x, y);
+                    }
+                }
+                ctx.closePath();
+                ctx.stroke();
+            }
+    
+    
+            draw(t) {
+                ctx.save();
+                ctx.translate(window.innerWidth * 0.5, window.innerHeight * 0.5);
+    
+                const base = 180;
+                const scale = 20;
+                this.vectors = [];
+    
+                for (let degree = 0; degree < 360; degree++) {
+                    const radius = (degree / 180) * Math.PI;
+                    const length =
+                        base +
+                        this.noise.noise3D(
+                            Math.cos(radius),
+                            Math.sin(radius),
+                            t
+                        ) *
+                        scale;
+    
+                    this.vectors.push({
+                        x: length * Math.cos(radius),
+                        y: length * Math.sin(radius),
+                    });
+                }
+                this.drawLine();
+    
+                ctx.restore();
+            }
+        }
+    
+        const init = () => {
+            objects = [];
+            objects.push(new Wave("#602B7D"));
+            objects.push(new Wave("#2F3550"));
+            objects.push(new Wave("#FE1735"));
+        };
+    
+        init();
+    
+        let tick = 0;
+        canvas.run((ctx) => {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            tick += 0.15;
+            objects.forEach((obj) => {
+                obj.draw(tick);
+            });
+        });
+    
+        canvas.onResize(() => {
+            init();
+        });
+    
+        const playControl = document.querySelector("#playControl");
+        const audio = document.querySelector("#audio");
+    
+        function toggleAudio() {
+            audio.paused ? audio.play() : audio.pause();
+        }
+    
+        playControl.addEventListener("click", () => {
+            playControl.classList.toggle("playing");
+            toggleAudio();
+            canvas.toggle();
+        });
+    </script>
+</body>
+
+
+
+</html>

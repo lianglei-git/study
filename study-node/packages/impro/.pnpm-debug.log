@@ -1,0 +1,55 @@
+{
+  "0 debug pnpm:scope": {
+    "selected": 1,
+    "workspacePrefix": "/Users/apple/Desktop/梅西/frontend/beforeschool/study/study-node"
+  },
+  "1 debug pnpm:package-manifest": {
+    "initial": {
+      "name": "impor",
+      "version": "1.0.0",
+      "description": "",
+      "main": "index.js",
+      "type": "module",
+      "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+      },
+      "keywords": [],
+      "author": "",
+      "license": "ISC"
+    },
+    "prefix": "/Users/apple/Desktop/梅西/frontend/beforeschool/study/study-node/packages/impro"
+  },
+  "2 debug pnpm:context": {
+    "currentLockfileExists": true,
+    "storeDir": "/Users/apple/Library/pnpm/store/v3",
+    "virtualStoreDir": "/Users/apple/Desktop/梅西/frontend/beforeschool/study/study-node/node_modules/.pnpm"
+  },
+  "3 debug pnpm:stage": {
+    "prefix": "/Users/apple/Desktop/梅西/frontend/beforeschool/study/study-node",
+    "stage": "resolution_started"
+  },
+  "4 error pnpm": {
+    "code": "ERR_PNPM_FETCH_404",
+    "hint": "@type/node is not in the npm registry, or you have no permission to fetch it.\n\nAn authorization header was used: Bearer npm_[hidden]",
+    "request": {
+      "authHeaderValue": "Bearer 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",
+      "url": "https://registry.npmjs.org/@type%2Fnode"
+    },
+    "response": {
+      "size": 0
+    },
+    "pkgName": "@type/node",
+    "spec": {
+      "fetchSpec": "latest",
+      "name": "@type/node",
+      "type": "tag"
+    },
+    "pkgsStack": [],
+    "err": {
+      "name": "pnpm",
+      "message": "GET https://registry.npmjs.org/@type%2Fnode: Not Found - 404",
+      "code": "ERR_PNPM_FETCH_404",
+      "stack": "pnpm: GET https://registry.npmjs.org/@type%2Fnode: Not Found - 404\n    at RetryOperation._fn (/usr/local/lib/node_modules/pnpm/dist/pnpm.cjs:84259:19)\n    at processTicksAndRejections (node:internal/process/task_queues:96:5)"
+    }
+  }
+}

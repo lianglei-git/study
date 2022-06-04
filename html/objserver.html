@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Observer
+    </title>
+</head>
+<body>
+    
+</body>
+<script>
+let jk = {
+    targetActions:[],
+    addUser(target,action){
+        var obj = {target,action};
+        this.targetActions.push(obj)
+    },
+    publishMsg(){
+        for(var i = 0;i<this.targetActions.length;i++){
+            var obj = this.targetActions[i];
+            var target = obj.target;
+            var action = obj.action;
+            action.call(target,"？？？？")
+        }
+    }
+
+}
+function response () {
+    console.log(this.name,'name',...arguments)
+}
+var stu1 = {name:"张三"}
+var stu2 = {name:"李四"}
+jk.addUser(stu1,response)
+jk.addUser(stu2,response)
+jk.publishMsg()
+</script>
+</html>

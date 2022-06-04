@@ -1,0 +1,177 @@
+<!--
+ * @Description: 
+ * @Version: 2.0
+ * @Autor: 
+ * @Date: 2020-07-28 16:39:04
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2020-07-30 14:45:35
+--> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>数值新增es6</title>
+    <style>
+
+        .bb + .aa{
+            color: green;
+        }
+        .logs-block,.bar {
+            width: 200px;
+            height: 800px;
+            overflow: auto;
+        }
+        span{
+            border-bottom: 1px solid #ccc;
+            display: block;
+        }
+        ::-webkit-scrollbar{
+            width: 8px;
+
+        }
+        ::-webkit-scrollbar-button{
+            border-radius: 10px;
+            
+        }
+        ::-webkit-scrollbar-track{
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb{
+            border-radius: 10px;
+            background: red;
+        }
+        .logs-block::-webkit-scrollbar {/*滚动条整体样式*/
+    width: 8px;     /*高宽分别对应横竖滚动条的尺寸*/
+    height: 1px;
+}
+
+.logs-block::-webkit-scrollbar-thumb{/*滚动条里面小方块*/
+    border-radius: 10px;
+    box-shadow: inset 0 0 5px rgba( 0, 0, 0, .1);
+    background: #9e9e9e;
+}
+
+.logs-block::-webkit-scrollbar-track{/*滚动条里面轨道*/
+    box-shadow: inset 0 0 5px rgba( 0, 0, 0, .1);
+    border-radius: 10px;
+    background: #EDEDED;
+}
+
+    </style>
+</head>
+<body>
+    <div class="a aa">a</div>
+    <div class="b bb">b</div>
+    <div class="bar">
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+        <span>垃圾</span>
+    </div>
+</body>
+<script>
+
+    //es6新增了 Number.isFinite(), Number.isNAN
+    let bignum = 123n;
+    console.log(bignum * 2n)
+</script>
+<script src="./手写.js"></script>
+
+</html>

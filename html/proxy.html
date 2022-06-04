@@ -1,0 +1,84 @@
+<!--
+ * @Description: !
+ * @Version: 2.0
+ * @Autor: 
+ * @Date: 2020-08-13 18:39:27
+ * @LastEditors: Please set LastEditors
+ * @LastEditTime: 2020-08-13 20:24:56
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+     let obj = {
+         name:"梁磊",
+         
+     }
+
+
+     let handler = {
+         get(target,prototype,receiver){
+            console.log(target,prototype,receiver)
+            if(prototype in target){ // target.hasOwnProperty(prototype)
+                return target[prototype]
+            }else{
+                throw new ReferenceError('对象没有'+prototype +'当前属性')
+            }
+            if(prototype === 'name'){
+                // return '监听到了'
+                throw new TypeError('你访问了名字')
+            }
+           
+         },
+         set(target,prototype,val,receiver){
+             console.log('设置值',target,prototype,val)
+            target[prototype] = val
+         },
+         has(target,propskey){
+             console.log('查看有没有某个值',target,propskey)
+             return propskey in target;
+         }
+     }
+    let newObj =  new Proxy(obj,handler);
+    console.log ('name' in newObj)
+
+
+    // DOM.div()
+    let DOM = new Proxy({},{
+        get(target,prototype) {
+            
+            return function(attr,...children) {
+                let el = document.createElement(prototype);
+                for(let [key,value] of Object.entries(attr)){
+                    el.setAttribute(key,value)
+                }
+                for(let i of children){
+                    if(typeof i === 'string'){
+                        i = document.createTextNode(i)
+                    }
+                    el.appendChild(i)
+                }
+                return el
+            }
+        }
+    })
+
+    let div = DOM.div({id:"oppovent",class:"circumlocution"},'我是内容',
+        DOM.a({id:'a标签',href:"www.baidu.com"},'我跳赚了'),
+        DOM.ul({},
+        DOM.li({},'11111'),
+        DOM.li({},'22222'),
+        DOM.li({},'33333'),
+        DOM.li({},'44444'),
+        )
+    )
+    document.body.appendChild(div)
+</script>
+</html>

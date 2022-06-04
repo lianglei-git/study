@@ -1,0 +1,169 @@
+<!--
+ * @Description: 
+ * @Version: 2.0
+ * @Autor: 麻雀
+ * @Date: 2020-03-13 16:34:52
+ * @LastEditors: 麻雀
+ * @LastEditTime: 2020-03-30 17:29:57
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style type="text/css">
+        html {
+            --main: #fff;
+            --linght: green;
+
+        }
+
+        @media (prefers-color-scheme:dark) {
+            :root {
+                --main: #666;
+                --linght: red;
+            }
+        }
+
+        @media (prefers-color-scheme:light) {
+            :root {
+                --main: #fff;
+                --linght: yellow;
+            }
+        }
+
+        .border {
+            display: block;
+            width: 100px;
+            height: 30px;
+            border: 10px dashed;
+
+        }
+
+        .wavyLine {
+            display: block;
+            height: 50px;
+            /* white-space: nowrap; */
+            /* letter-spacing: 100%; */
+            width: 100px;
+            background: var(--main);
+            color: var(--linght);
+
+
+        }
+
+        .animation {
+            animation: vibrate 0.3s linear infinite both;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .animation {
+                animation: none;
+            }
+        }
+
+        body {
+            background: var(--main);
+        }
+
+        .circle {
+            width: 100px;
+            height: 100px;
+            border-radius: 100px;
+            background: red;
+        }
+
+        html,
+        body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background: #000;
+            filter: blur(2px) contrast(10);
+        }
+
+        .div {
+            position: relative;
+            width: 640px;
+            height: 106px;
+            color: #fff;
+            font-size: 124px;
+            text-align: center;
+            margin: 100px auto;
+            border-bottom: 10px solid #fff;
+            transform: skewY(5deg);
+            line-height: 100px;
+
+        }
+
+        .div::before,
+        .div::after {
+            position: absolute;
+            content: "";
+            bottom: -20px;
+            left: 0;
+            width: 10px;
+            height: 20px;
+            border-radius: 50%;
+            background: #fff;
+            transform: translate(0, 0);
+            animation: move 7.5s .1s infinite;
+        }
+
+        .div::after {
+            animation: move 7.5s ease-in-out 1s infinite;
+        }
+
+        @keyframes move {
+            80% {
+                bottom: -30px;
+                transform: translate(623px, 0);
+            }
+
+            93% {
+                transform: translate(623px, 3px);
+                opacity: 1;
+            }
+
+            100% {
+                transform: translate(623px, 150px);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <span class="border"></span>
+
+    <div class="wavyLine">
+        阿斯利康的路口监控了
+    </div>
+    <progress value="30" max="100">30%</progress>
+    <progress max="10"></progress>
+    <div class="animation">animated box</div>
+    <div class="circle"></div>
+    <div class="div">我来啦！</div>
+</body>
+<script>
+    let nums = [5, 7, 11, 15],
+        target = 18
+    var twoSum = function (nums, target) {
+        let newArr = [];
+        
+        for (var i = 0; i < nums.length; i++) {
+            newArr.push(target - nums[i]);
+        }
+        for (var j = 0; j < nums.length; j++) {
+            if(newArr.indexOf(nums[j]) !== -1 &&newArr.indexOf(nums[j]) !== j ){
+                console.log(newArr, [newArr.indexOf(nums[j]),j])
+            }
+        }
+    };
+
+    twoSum(nums, target)
+</script>
+
+</html>
