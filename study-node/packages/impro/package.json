@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "mdtohtml": "node ./mdtohtml/index.js index.md"
+    "mdtohtml": "node ./mdtohtml/index.js index.md",
+    "start": "vite-node"
   },
   "keywords": [],
   "author": "",

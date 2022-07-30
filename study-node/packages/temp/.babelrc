@@ -1,0 +1,31 @@
+{
+    "presets": [
+      [
+        "@babel/preset-env",
+        // 测试时使用
+        // {
+        //   "targets": "ie >= 8",
+        //   "useBuiltIns": "entry",
+        //   "corejs": 3
+        // },
+        // 生产打包时使用
+        {
+          "modules": false,
+         "useBuiltIns": "usage",
+        //  "corejs": "3",
+          "targets": ">0.2%, not dead, Firefox >= 52, IE >= 8"
+        }
+      ]
+    ],
+    "plugins": [
+      // 生产打包时使用
+      [
+        "@babel/plugin-transform-runtime",
+        {
+          "corejs": "3",
+          "helpers": true,
+          "regenerator": true
+        }
+      ],
+    ]
+  }
