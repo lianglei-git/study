@@ -11,7 +11,8 @@
     "bins": "bin/cop.js"
   },
   "bin": {
-    "cop": "./bin/cop.js"
+    "cop": "./bin/cop.js",
+    "mywatch": "./bin/watch.js"
   },
   "keywords": [],
   "author": "",
