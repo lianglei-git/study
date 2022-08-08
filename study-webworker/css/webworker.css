@@ -1,0 +1,49 @@
+#main {
+  display: flex;
+  justify-content: center;
+}
+#tp,
+#tp1,
+#tp2 {
+  width: 300px;
+  height: 600px;
+  overflow: auto;
+  margin: 0 30px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  display: inline-block;
+}
+#tp.flag,
+#tp1.flag,
+#tp2.flag {
+  display: flex;
+  justify-content: space-around;
+}
+#tp > div,
+#tp1 > div,
+#tp2 > div {
+  display: flex;
+  flex-direction: column;
+}
+#tp > div:last-child,
+#tp1 > div:last-child,
+#tp2 > div:last-child {
+  padding-top: 20px;
+}
+#tp > span,
+#tp1 > span,
+#tp2 > span {
+  display: block;
+  padding: 3px 6px;
+  transition: 0.3s;
+}
+#tp > span:first-child,
+#tp1 > span:first-child,
+#tp2 > span:first-child {
+  font-weight: bold;
+}
+#tp > span.other,
+#tp1 > span.other,
+#tp2 > span.other {
+  text-align: right;
+}

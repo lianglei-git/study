@@ -1,0 +1,43 @@
+#main {
+    display: flex;
+    justify-content: center;
+}
+.c(){
+    display: block;
+    padding: 3px 6px;
+    transition: .3s;
+}
+
+#tp,
+#tp1,
+#tp2 {
+    width: 300px;
+    height: 600px;
+    overflow: auto;
+    margin: 0 30px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    display: inline-block;
+    &.flag {
+        display: flex;
+        justify-content: space-around;
+    }
+    >div {
+        display: flex;
+        flex-direction: column;
+        &:last-child {
+            padding-top: 20px;
+        }
+    }
+
+
+    >span {
+        .c();
+        &:first-child{
+            font-weight: bold;
+        }
+        &.other {
+            text-align: right;
+        }
+    }
+}
