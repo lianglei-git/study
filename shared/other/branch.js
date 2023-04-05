@@ -1,0 +1,2 @@
+
+new Worker('./thread.js')

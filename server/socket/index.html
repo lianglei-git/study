@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="../../lib/socket.io.js"></script>
+</head>
+<body>
+    <script>
+        let socket= null;
+        //    window.connectSocket = () => {
+            if (socket) console.log('已经有socket');
+            socket = io('http://127.0.0.1:28256', {
+                autoConnect: true
+            });
+            socket.on("connect", () => {
+                console.log(socket.id); // "G5p5..."
+                var step = function () {
+                setTimeout(step, 1000);
+                socket.emit('hert', 'wowkwow');
+                console.log('发送心跳')
+            };
+            step();
+            });
+
+            // setTimeout(() => {
+            //     console.log('开始链接')
+            //     socket.connect();
+            // }, 1000)
+
+            // window.socket = socket;
+        // }
+
+    </script>
+</body>
+</html>

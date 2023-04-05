@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Document</title>
+    <style>
+        body {
+            width: 960px;
+            margin: 0px auto;
+        }
+
+        html,
+        body {
+            margin: 0px;
+            padding: 0;
+        }
+
+        .cell {
+            float: left;
+            margin: 10px;
+            position: relative;
+            width: 200px;
+            height: 230px;
+            cursor: pointer;
+        }
+
+        .cell span,
+        .cell img {
+            position: absolute;
+        }
+
+        .cell img {
+            width: 200px;
+            height: 200px;
+            top: 0;
+        }
+
+        .cell span {
+            width: 200px;
+            height: 30px;
+            line-height: 30px;
+            top: 200px;
+            left: 0px;
+            text-align: center;
+            font-size: 18px;
+        }
+
+        img {
+            display: block;
+        }
+
+        img {
+            display: block;
+            border: 0;
+        }
+
+        .warp {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .warp img {
+            position: relative;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="warp">

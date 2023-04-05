@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>服务端(pm2)相关操作</title>
+    <style>
+        code {
+            background: rgb(232 234 248);
+            border-radius: 3px;
+            color: #181515;
+            padding: 3px;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <h2 id="服务端pm2相关操作">服务端(pm2)相关操作</h2>
+    <h3 id="相关路径标准">相关路径标准</h3>
+    <ul>
+        <li>pm2 工具存放位置 <code>~/home/yizhun/.pm2/~</code></li>
+        <li>logs 存放地址
+            <ol type="1">
+                <li>默认存放 <code>~/home/yizhun/.pm2/logs/~</code></li>
+                <li>此项目存放 <code>~/home/yizhun/yzpacs_db/server-render/logs/~</code></li>
+            </ol>
+        </li>
+    </ul>
+    <h3 id="项目以及-pm2-相关命令">项目以及 pm2 相关命令</h3>
+    <ol type="1">
+        <li>
+            <p>生成配置<br />
+                <code>pm2 init simple</code> 执行此命令将会生成一个文件如: 目前仅应用下列条件。如需更多请参考<a
+                    href="https://pm2.keymetrics.io/docs/usage/application-declaration/">PM2</a>
+            </p>
+            <div class="sourceCode" id="cb1">
+                <pre class="sourceCode js"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>module<span class="op">.</span><span class="at">exports</span> <span class="op">=</span> {</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>  <span class="dt">apps</span><span class="op">:</span> [</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true"></a>    {</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true"></a>      <span class="dt">name</span><span class="op">:</span> <span class="st">&quot;main&quot;</span><span class="op">,</span> <span class="co">// 进程名称</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true"></a>      <span class="dt">script</span><span class="op">:</span> <span class="st">&quot;./main.js&quot;</span><span class="op">,</span> <span class="co">// 入口</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true"></a>      <span class="dt">out_file</span><span class="op">:</span> <span class="st">&quot;./logs/main-out.log&quot;</span><span class="op">,</span> <span class="co">// 日志配置文件</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true"></a>      <span class="dt">pid_file</span><span class="op">:</span> <span class="st">&quot;./logs/main-pid.log&quot;</span><span class="op">,</span> <span class="co">// pid配置文件</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true"></a>      <span class="dt">error_file</span><span class="op">:</span> <span class="st">&quot;./logs/main-error.log&quot;</span><span class="op">,</span> <span class="co">// error配置文件</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true"></a>      <span class="dt">min_uptime</span><span class="op">:</span> <span class="st">&quot;60s&quot;</span><span class="op">,</span> <span class="co">// 最小运行时间， 60s内无故停止，认为异常退出，会触发 max_restarts 设置数量</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true"></a>      <span class="dt">max_restarts</span><span class="op">:</span> <span class="dv">15</span><span class="op">,</span><span class="co">// 默认15 重启次数。</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true"></a>      <span class="dt">watch</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span> <span class="co">// 监控 文件变动默认重载</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true"></a>      <span class="dt">cwd</span><span class="op">:</span> <span class="st">&#39;&#39;</span><span class="op">,</span> <span class="co">// 默认的项目启动路径</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true"></a>    }<span class="op">,</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true"></a>  ]<span class="op">,</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true"></a>}<span class="op">;</span></span></code></pre>
+            </div>
+        </li>
+        <li>
+            <p>启动 &gt;PS:<br />
+                delete与stop区别：stop和delete都会停止,stop不会完全删除启动记录，下次会走缓存，delete会删除此进程； 可通过pm2 show [进程名称] 来查看详细信息。<br />
+                restart和reload： 同上。</p>
+            <ul>
+                <li>
+                    <p>pm2 默认支持<br />
+                          <code>pm2 start [文件名]</code><br />
+                          <code>pm2 start [文件名] --name [进程名称自定义]</code><br />
+                          <code>pm2 start [文件名] -i [数字]</code> 根据 CPU 核数启动进程个数<br />
+                          <code>pm2 start [文件名] --watch</code> 根据文件变动 自动 reload   <code>pm2 updatePM2</code> 升级Pm2<br />
+                          <code>pm2 --help</code><br />
+                          <code>pm2 delete [all]</code> 删除全部进程<br />
+                          <code>pm2 monit</code> 监控<br />
+                          <code>pm2 stop [all]</code> 停止<br />
+                          <code>pm2 flush</code> 清空日志   <code>pm2 list</code> 查看进程   <code>pm2 show [进程名字]</code>
+                        展示进程详细信息.</p>
+                </li>
+                <li>
+                    <p>项目配置（自定义启动）：<br />
+                          <code>pm2 start ecosytem.config.js</code> 启动全部的配置项内容<br />
+                          <code>pm2 stop ecosytem.config.js</code><br />
+                          <code>pm2 restart ecosytem.config.js</code><br />
+                          <code>pm2 reload ecosytem.config.js</code><br />
+                          <code>pm2 delete ecosytem.config.js</code><br />
+                          <code>pm2 start ecosytem.config.js --only main</code> 仅启动一个<br />
+                          <code>pm2 start ecosytem.config.js --only "main, main2"</code> 同时启动几个</p>
+                </li>
+            </ul>
+        </li>
+    </ol>
+    <h3 id="此项目应用">此项目应用</h3>
+    <ol type="1">
+        <li><code>pm2 start ecosystem.config.js --only main</code></li>
+        <li><code>pm2 restart ecosystem.config.js --only main</code></li>
+        <li><code>pm2 stop ecosystem.config.js --only main</code></li>
+        <li><code>pm2 delete ecosystem.config.js --only main</code></li>
+    </ol>
+    <h3 id="other">Other</h3>
+    <ul>
+        <li><code>lsof -i:端口</code> 用以显示符合条件的进程情况</li>
+        <li><code>ps -ef | grep 进程名称</code> 查看相关进程的信息 🌰：<code>ps -ef|grep node</code> 查看node相关进程信息</li>
+        <li><code>kill pid</code> 杀死进程</li>
+        <li><code>kill 9  pid</code> 彻底杀死进程</li>
+        <li><code>kill -KILL pid</code> 强制杀死进程</li>
+        <li><code>kill -9 $(ps -ef | grep hnlinux)</code> 过滤出hnlinux用户进程并杀死</li>
+        <li><code>kill -u hnlinux</code> 过滤出hnlinux用户进程并杀死</li>
+        <li><code>htop</code> 是Linux系统中的一个互动的进程查看器 如果没有就用<code>top</code></li>
+        <li><code>top</code> 性能分析工具,能够实时显示系统中各个进程的资源占用状况</li>
+        <li><code>as</code> 二进制工具集</li>
+        <li><code>nvidia-smi</code> 显示GPU当前的状态</li>
+    </ul>
+    <h3 id="其他入口">其他入口</h3>
+    <ul>
+        <li><a href="http://10.2.112.138:9292/test">测试工具</a></li>
+        <li><a href="http://10.2.112.138:9292/logs">日志文件</a> （参数：type： error ｜ pid ｜ out）默认out</li>
+    </ul>
+    <h3 id="参考">参考</h3>
+    <ul>
+        <li><a href="https://pm2.keymetrics.io/docs/usage/application-declaration/">PM2官方简介</a><br />
+        </li>
+        <li><a href="https://wenku.baidu.com/view/842b60cd82c758f5f61fb7360b4c2e3f56272574.html">PM2常用命令</a></li>
+        <li><a href="http://www.ha97.com/1029.html">lsof</a></li>
+        <li><a href="https://www.cnblogs.com/baichunyu/p/15356162.html">linux–top命令</a></li>
+        <li><a href="https://blog.csdn.net/K346K346/article/details/89088671">linux–as命令</a></li>
+        <li><a href="https://www.runoob.com/linux/linux-command-manual.html">linux教程</a></li>
+    </ul>
+
+</body>
+
+</html>

@@ -1,0 +1,1373 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>serverIo interface of testing</title>
+    <script src="../lib/socket.io.min.js"></script>
+    <script src="../lib/spui.js"></script>
+    <link rel="stylesheet" href="../lib/spui.css">
+    <style>
+        body {
+            padding: 30px;
+            padding-bottom: 0;
+            box-sizing: border-box;
+            margin: 0;
+        }
+
+        body,
+        html {
+            width: 100%;
+            height: 100%;
+        }
+
+        .ip-input {
+            width: 300px;
+        }
+
+        .ip-input .sp-input-after {
+            width: 50px;
+            padding: 0;
+            border: none;
+        }
+
+        .ip-input .sp-input-after .sp-input {
+            border-bottom: 0;
+            border-top: 0;
+        }
+
+        .ip-number {
+            width: 80px;
+        }
+
+        .sp-icon-icon_commone_fabu:hover {
+            color: #1c6a88;
+            cursor: pointer;
+        }
+
+        .iplist {
+            margin: 50px 0;
+        }
+
+        .iplist>div {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            margin: 15px 0;
+        }
+
+        .iplist .kv {
+            display: flex;
+            margin: 0 7px;
+        }
+
+        #views {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        #views .IMG {
+            margin: 10px;
+        }
+
+        #views img,
+        #views .IMG {
+            width: 200px;
+            height: 200px;
+            position: relative;
+        }
+
+        #views img {
+            -webkit-user-drag: none;
+        }
+
+        #views .IMG::before {
+            position: absolute;
+            content: "socket "attr(data-idx) "";
+            font-size: 14px;
+            left: 10px;
+            top: 10px;
+            filter: contrast(0%);
+            z-index: 9;
+        }
+
+        #views .IMG::after {
+            position: absolute;
+            content: "渲染次数: "attr(recount) "";
+            font-size: 14px;
+            right: 10px;
+            top: 10px;
+            filter: contrast(0%);
+            z-index: 9;
+        }
+
+        #cAll,
+        footer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        body>footer {
+            flex-direction: column;
+            margin-top: 10px;
+        }
+
+        #cAll:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+            user-select: none;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-between;
+            min-height: 65%;
+            user-select: none;
+        }
+
+        .l,
+        .r {
+            flex: 1;
+        }
+
+        .l {
+            margin-right: 10px;
+            border-right: 1px dashed #ccc;
+        }
+
+        .r {
+            margin-left: 10px;
+        }
+
+        #connect {
+            margin: 10px;
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="l">
+            <section style="margin: 10px 0;margin-right: 20px; border-bottom: 1px dashed #ccc; padding-bottom: 15px;">
+                <sp-input-number bordered='true' prefix="<b>并发主机数量:&nbsp;</b>" style="width: 300px;"
+                    suffix="<sp-button type='text' id='ip-number-button'>修改</sp-button>" classname='ip-number re-number'
+                    value='1' max='10' min="1">
+                </sp-input-number>
+
+                <sp-input-number bordered='true' prefix="<b>频率(1000ms/渲染次数):&nbsp;</b>" style="width: 300px;"
+                    classname='ip-number re-count' suffix="<sp-button type='text' id='rendercount'>修改</sp-button>"
+                    value='1' max='10' min="1"></sp-input-number>
+                <!-- <sp-checkbox></sp-checkbox>    -->
+            </section>
+            <sp-button type="primary" id="addCup">添加主机</sp-button>
+            <section class="iplist"></section>
+        </div>
+        <div class="r">
+            <div id="views"></div>
+        </div>
+    </div>
+    <footer>
+        <div style="border: 1px solid; width: 200px; height: 200px;" id="cAll">
+            <span>滑动控制全部</span>
+        </div>
+        <sp-button id="connect" type="primary">建立连接</sp-button>
+    </footer>
+</body>
+<script>
+    let preREnderArr = [{
+            "mat": [
+                -1,
+                -1.2246467991473532e-16,
+                3.1086403338668206e-33,
+                0,
+                2.719262146893782e-32,
+                -2.220446049250313e-16,
+                -1.2235281966262774,
+                0,
+                1.2246467991473532e-16,
+                -1,
+                2.716778350345178e-16,
+                0,
+                0,
+                0,
+                0,
+                1
+            ],
+            "ray": [
+                1.2246467991473532e-16,
+                -1,
+                2.716778350345178e-16
+            ],
+            "rotation": [
+                1.5707963267948966,
+                0,
+                3.141592653589793
+            ],
+            "rmat": [
+                -1,
+                2.465190328815662e-32,
+                1.2246467991473532e-16,
+                0,
+                -1.2246467991473532e-16,
+                -2.220446049250313e-16,
+                -1,
+                0,
+                0,
+                -0.8173085040110821,
+                1.814789438750091e-16,
+                0,
+                0,
+                0,
+                0,
+                1
+            ],
+            "ww": 802,
+            "wl": 198,
+            "use_scope": [
+                1,
+                1,
+                0,
+                0
+            ],
+            "cross": 0,
+            "use_small": 0,
+            "rescale_slop": 1,
+            "rescale_intercept": 0,
+            "low": 1,
+            "step": 1200,
+            "scope_opacity": 1,
+            "active_type": 1,
+            "panleSize": 1024,
+            "space": [
+                0.5,
+                0.5,
+                0.5,
+                1
+            ],
+            "mode": 4,
+            "props": {
+                "colorA": [
+                    255,
+                    30,
+                    30
+                ],
+                "colorB": [
+                    230,
+                    230,
+                    230
+                ],
+                "fresnel": 1,
+                "expand": true,
+                "maskOffset": 0
+            }
+        },
+        {
+            "mat": [
+                2.220446049250313e-16,
+                1,
+                -6.032459754712733e-32,
+                0,
+                -2.220446049250313e-16,
+                4.930380657631324e-32,
+                -1.2235281966262774,
+                0,
+                -1,
+                2.220446049250313e-16,
+                2.716778350345178e-16,
+                0,
+                0,
+                0,
+                0,
+                1
+            ],
+            "ray": [
+                -1,
+                2.220446049250313e-16,
+                2.716778350345178e-16
+            ],
+            "rotation": [
+                1.5707963267948966,
+                0,
+                -1.5707963267948966
+            ],
+            "rmat": [
+                2.220446049250313e-16,
+                -2.220446049250313e-16,
+                -1,
+                0,
+                1,
+                0,
+                2.220446049250313e-16,
+                0,
+                0,
+                -0.8173085040110821,
+                1.814789438750091e-16,
+                0,
+                0,
+                0,
+                0,
+                1
+            ],
+            "ww": 802,
+            "wl": 198,
+            "use_scope": [
+                1,
+                1,
+                0,
+                0
+            ],
+            "cross": 0,
+            "use_small": 0,
+            "rescale_slop": 1,
+            "rescale_intercept": 0,
+            "low": 1,
+            "step": 1200,
+            "scope_opacity": 1,
+            "active_type": 1,
+            "panleSize": 1024,
+            "space": [
+                0.5,
+                0.5,
+                0.5,
+                1
+            ],
+            "mode": 4,
+            "props": {
+                "colorA": [
+                    255,
+                    30,
+                    30
+                ],
+                "colorB": [
+                    230,
+                    230,
+                    230
+                ],
+                "fresnel": 1,
+                "expand": true,
+                "maskOffset": 0
+            }
+        },
+        {
+            "mat": [
+                2.220446049250313e-16,
+                -1,
+                6.032459754712733e-32,
+                0,
+                2.220446049250313e-16,
+                4.930380657631324e-32,
+                -1.2235281966262774,
+                0,
+                1,
+                2.220446049250313e-16,
+                2.716778350345178e-16,
+                0,
+                0,
+                0,
+                0,
+                1
+            ],
+            "ray": [
+                1,
+                2.220446049250313e-16,
+                2.716778350345178e-16
+            ],
+            "rotation": [
+                1.5707963267948966,
+                0,
+                1.5707963267948966
+            ],
+            "rmat": [
+                2.220446049250313e-16,
+                2.220446049250313e-16,
+                1,
+                0,
+                -1,
+                0,
+                2.220446049250313e-16,
+                0,
+                0,
+                -0.8173085040110821,
+                1.814789438750091e-16,
+                0,
+                0,
+                0,
+                0,
+                1
+            ],
+            "ww": 802,
+            "wl": 198,
+            "use_scope": [
+                1,
+                1,
+                0,
+                0
+            ],
+            "cross": 0,
+            "use_small": 0,
+            "rescale_slop": 1,
+            "rescale_intercept": 0,
+            "low": 1,
+            "step": 1200,
+            "scope_opacity": 1,
+            "active_type": 1,
+            "panleSize": 1024,
+            "space": [
+                0.5,
+                0.5,
+                0.5,
+                1
+            ],
+            "mode": 4,
+            "props": {
+                "colorA": [
+                    255,
+                    30,
+                    30
+                ],
+                "colorB": [
+                    230,
+                    230,
+                    230
+                ],
+                "fresnel": 1,
+                "expand": true,
+                "maskOffset": 0
+            }
+        },
+        {
+            "mat": [
+                1,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                1.2235281966262774,
+                0,
+                0,
+                0,
+                0,
+                1
+            ],
+            "ray": [
+                0,
+                0,
+                1.2235281966262774
+            ],
+            "rotation": [
+                0,
+                0,
+                0
+            ],
+            "rmat": [
+                1,
+                0,
+                0,
+                0,
+                0,
+                1,
+                0,
+                0,
+                0,
+                0,
+                0.8173085040110821,
+                0,
+                0,
+                0,
+                0,
+                1
+            ],
+            "ww": 802,
+            "wl": 198,
+            "use_scope": [
+                1,
+                1,
+                0,
+                0
+            ],
+            "cross": 0,
+            "use_small": 0,
+            "rescale_slop": 1,
+            "rescale_intercept": 0,
+            "low": 1,
+            "step": 1200,
+            "scope_opacity": 1,
+            "active_type": 1,
+            "panleSize": 1024,
+            "space": [
+                0.5,
+                0.5,
+                0.5,
+                1
+            ],
+            "mode": 4,
+            "props": {
+                "colorA": [
+                    255,
+                    30,
+                    30
+                ],
+                "colorB": [
+                    230,
+                    230,
+                    230
+                ],
+                "fresnel": 1,
+                "expand": true,
+                "maskOffset": 0
+            }
+        },
+        {
+            "mat": [
+                1,
+                0,
+                0,
+                0,
+                0,
+                0.8660254037844386,
+                -0.6117640983131388,
+                0,
+                0,
+                0.5000000000000001,
+                1.059606500524918,
+                0,
+                0,
+                0,
+                0,
+                1
+            ],
+            "ray": [
+                0,
+                0.5000000000000001,
+                1.059606500524918
+            ],
+            "rotation": [
+                0.5235987755982989,
+                0,
+                0
+            ],
+            "rmat": [
+                1,
+                0,
+                0,
+                0,
+                0,
+                0.8660254037844386,
+                0.5000000000000001,
+                0,
+                0,
+                -0.4086542520055412,
+                0.7078099272026529,
+                0,
+                0,
+                0,
+                0,
+                1
+            ],
+            "ww": 802,
+            "wl": 198,
+            "use_scope": [
+                1,
+                1,
+                0,
+                0
+            ],
+            "cross": 0,
+            "use_small": 0,
+            "rescale_slop": 1,
+            "rescale_intercept": 0,
+            "low": 1,
+            "step": 1200,
+            "scope_opacity": 1,
+            "active_type": 1,
+            "panleSize": 1024,
+            "space": [
+                0.5,
+                0.5,
+                0.5,
+                1
+            ],
+            "mode": 4,
+            "props": {
+                "colorA": [
+                    255,
+                    30,
+                    30
+                ],
+                "colorB": [
+                    230,
+                    230,
+                    230
+                ],
+                "fresnel": 1,
+                "expand": true,
+                "maskOffset": 0
+            }
+        },
+        {
+            "mat": [
+                0.9689437105490827,
+                -0.13725959007509986,
+                -0.2516660711399758,
+                0,
+                -0.012946833637881839,
+                0.8025004834118835,
+                -0.7298480081005937,
+                0,
+                0.2469422306656524,
+                0.5806485848222721,
+                0.9492140547042658,
+                0,
+                0,
+                0,
+                0,
+                1
+            ],
+            "ray": [
+                0.2469422306656524,
+                0.5806485848222721,
+                0.9492140547042658
+            ],
+            "rotation": [
+                0.6554860129107535,
+                -0.20716752592582907,
+                0.1407226710540322
+            ],
+            "rmat": [
+                0.9689437105490829,
+                -0.012946833637881287,
+                0.24694223066565263,
+                0,
+                -0.13725959007509952,
+                0.8025004834118847,
+                0.5806485848222731,
+                0,
+                -0.16811122185898236,
+                -0.48753349967819953,
+                0.6340685250865565,
+                0,
+                0,
+                0,
+                0,
+                1
+            ],
+            "ww": 746,
+            "wl": 391,
+            "use_scope": [
+                1,
+                1,
+                0,
+                0
+            ],
+            "cross": 0,
+            "use_small": 0,
+            "rescale_slop": 1,
+            "rescale_intercept": 0,
+            "low": 1,
+            "step": 1200,
+            "scope_opacity": 1,
+            "active_type": 1,
+            "panleSize": 1024,
+            "space": [
+                0.5,
+                0.5,
+                0.5,
+                1
+            ],
+            "mode": 4,
+            "props": {
+                "colorA": [
+                    255,
+                    30,
+                    30
+                ],
+                "colorB": [
+                    230,
+                    230,
+                    230
+                ],
+                "fresnel": 1,
+                "expand": true,
+                "maskOffset": 0
+            }
+        },
+        {
+            "mat": [
+                0.9167428401454861,
+                -0.224521775966799,
+                -0.40426922689965666,
+                0,
+                0.0022698862365537007,
+                0.8300256856034309,
+                -0.6823868154313242,
+                0,
+                0.3994714165725253,
+                0.5105363193302381,
+                0.9316307606809667,
+                0,
+                0,
+                0,
+                0,
+                1
+            ],
+            "ray": [
+                0.3994714165725253,
+                0.5105363193302381,
+                0.9316307606809667
+            ],
+            "rotation": [
+                0.6321838568834454,
+                -0.33674077530600055,
+                0.2401847208767246
+            ],
+            "rmat": [
+                0.9167428401454868,
+                0.002269886236554969,
+                0.39947141657252594,
+                0,
+                -0.2245217759667984,
+                0.8300256856034325,
+                0.5105363193302399,
+                0,
+                -0.27004909079018136,
+                -0.45582974615125854,
+                0.6223230044084105,
+                0,
+                0,
+                0,
+                0,
+                1
+            ],
+            "ww": 746,
+            "wl": 391,
+            "use_scope": [
+                1,
+                1,
+                0,
+                0
+            ],
+            "cross": 0,
+            "use_small": 0,
+            "rescale_slop": 1,
+            "rescale_intercept": 0,
+            "low": 1,
+            "step": 1200,
+            "scope_opacity": 1,
+            "active_type": 1,
+            "panleSize": 1024,
+            "space": [
+                0.5,
+                0.5,
+                0.5,
+                1
+            ],
+            "mode": 4,
+            "props": {
+                "colorA": [
+                    255,
+                    30,
+                    30
+                ],
+                "colorB": [
+                    230,
+                    230,
+                    230
+                ],
+                "fresnel": 1,
+                "expand": true,
+                "maskOffset": 0
+            }
+        },
+        {
+            "mat": [
+                0.4929111668190985,
+                -0.49338741950450116,
+                -0.8768587369933803,
+                0,
+                -0.02517174647731223,
+                0.815245332907548,
+                -0.7078947900657501,
+                0,
+                0.8697154504803908,
+                0.30322252793476223,
+                0.4764713732174034,
+                0,
+                0,
+                0,
+                0,
+                0.9999999999999999
+            ],
+            "ray": [
+                0.869715450480391,
+                0.3032225279347623,
+                0.4764713732174035
+            ],
+            "rotation": [
+                0.9783653508957747,
+                -0.7990072795801209,
+                0.7858810320287027
+            ],
+            "rmat": [
+                0.4929111668191012,
+                -0.02517174647730852,
+                0.8697154504803981,
+                0,
+                -0.4933874195045021,
+                0.8152453329075491,
+                0.30322252793476734,
+                0,
+                -0.5857356655426695,
+                -0.47286889951634076,
+                0.31827963288644456,
+                0,
+                0,
+                0,
+                0,
+                1
+            ],
+            "ww": 746,
+            "wl": 391,
+            "use_scope": [
+                1,
+                1,
+                0,
+                0
+            ],
+            "cross": 0,
+            "use_small": 0,
+            "rescale_slop": 1,
+            "rescale_intercept": 0,
+            "low": 1,
+            "step": 1200,
+            "scope_opacity": 1,
+            "active_type": 1,
+            "panleSize": 1024,
+            "space": [
+                0.5,
+                0.5,
+                0.5,
+                1
+            ],
+            "mode": 4,
+            "props": {
+                "colorA": [
+                    255,
+                    30,
+                    30
+                ],
+                "colorB": [
+                    230,
+                    230,
+                    230
+                ],
+                "fresnel": 1,
+                "expand": true,
+                "maskOffset": 0
+            }
+        },
+        {
+            "mat": [
+                0.24630006051077613,
+                -0.5539132088514933,
+                -0.9730830109695627,
+                0,
+                0.01737285100012093,
+                0.8229797594776157,
+                -0.6947254077674444,
+                0,
+                0.9690379065034046,
+                0.12603361674571062,
+                0.2597831971169347,
+                0,
+                0,
+                0,
+                0,
+                1.0000000000000002
+            ],
+            "ray": [
+                0.9690379065034044,
+                0.1260336167457106,
+                0.25978319711693465
+            ],
+            "rotation": [
+                1.2129583537133564,
+                -0.919517171335993,
+                1.152396513860328
+            ],
+            "rmat": [
+                0.24630006051077824,
+                0.017372851000126366,
+                0.969037906503419,
+                0,
+                -0.5539132088514973,
+                0.822979759477616,
+                0.12603361674571695,
+                0,
+                -0.6500128253415904,
+                -0.4640718418149689,
+                0.17353340673988032,
+                0,
+                0,
+                0,
+                0,
+                1
+            ],
+            "ww": 746,
+            "wl": 391,
+            "use_scope": [
+                1,
+                1,
+                0,
+                0
+            ],
+            "cross": 0,
+            "use_small": 0,
+            "rescale_slop": 1,
+            "rescale_intercept": 0,
+            "low": 1,
+            "step": 1200,
+            "scope_opacity": 1,
+            "active_type": 1,
+            "panleSize": 1024,
+            "space": [
+                0.5,
+                0.5,
+                0.5,
+                1
+            ],
+            "mode": 4,
+            "props": {
+                "colorA": [
+                    255,
+                    30,
+                    30
+                ],
+                "colorB": [
+                    230,
+                    230,
+                    230
+                ],
+                "fresnel": 1,
+                "expand": true,
+                "maskOffset": 0
+            }
+        }
+    ]
+</script>
+<script>
+    let target = new Proxy({}, {
+        get(target, prop, receiver) {
+            return Reflect.get(...arguments);
+        },
+        set(target, prop, receiver) {
+            return Reflect.set(...arguments);
+        }
+    })
+    var gldata = {
+        ipsdata: target,
+        preRenderVr: preREnderArr[0],
+        t: null, // 定时器
+        modal: Spui.Modal.config({
+            visible: false,
+            bodyhtml: '是否断开连接？',
+            onOk(e) {
+                gldata.modal.show(false);
+                closeSocketAll()
+            }
+        }),
+        views: $('#views'),
+        iplistEl: $('.iplist')
+    }
+    renderIplist();
+    imgsMove();
+
+
+
+    /* Event */
+    {
+        let proto = {
+            map(func) {
+                for (let [k, v] of Object.entries(this)) {
+                    func(v)
+                }
+            }
+        }
+        for (let k in proto) {
+            Object.prototype[k] = proto[k]
+        }
+
+        Array.from(document.querySelectorAll('.ip-number')).map(el => {
+            el.addEventListener('click', e => {
+                e.stopPropagation();
+                // e.stopImmediatePropagation()
+            })
+        })
+
+        window.onbeforeunload = () => {
+            closeSocketAll()
+        }
+
+
+        $('#connect').onclick = (e) => {
+            let isActive = e.target.innerText == '断开连接'
+            e.target['attr-type'] = 'danger ';
+            e.target.innerText = '断开连接';
+            isActive && gldata.modal.show(true);
+            if (!isActive) {
+                window.ipsdata = gldata.ipsdata = getIpdatas();
+                content(gldata.ipsdata)
+            }
+        };
+
+        gldata.iplistEl.onclick = e => {
+            let ca = e.target.getAttribute('re-ca');
+            if (ca && ca == 'addicon') {
+                let parent = e.target.parentElement;
+                let html = `
+                        <sp-input addon-before='key' placeholder='null' style="width:100px"></sp-input>
+                        <sp-input addon-before='value' placeholder='null' style="width:100px"></sp-input>
+                        `
+                let el = strToEl(html, 'kv')
+                parent.insertBefore(el, e.target)
+            }
+        }
+
+        $('#ip-number-button').onclick = e => {
+            let count = $('.re-number .input').value;
+            closeSocketAll()
+            renderIplist(count);
+            imgsMove()
+        }
+
+        $('#rendercount').onclick = e => {
+            timeAll()
+        }
+
+        $('#addCup').onclick = e => {
+            let par = gldata.iplistEl;
+            let len = +(document.querySelectorAll('.ip-input')[par.children.length - 1].id) + 1
+            renderIplistItem(len, len, par, gldata.views).then(() => {
+                if ($('#connect').innerText !== '建立连接') {
+                    let params = getIpdatas();
+                    let data = params[len]
+                    gldata.ipsdata[len] = data
+                    content(new Array(data), 'add')
+                }
+            })
+            imgsMove()
+
+        }
+    }
+    /* 帧率变动定时器*/
+    function timeAll() {
+        let count = $('.re-count .input').value;
+        let c = 0;
+        gldata.t && clearInterval(gldata.t)
+        gldata.t = setInterval(() => {
+            if (c == count) {
+                clearInterval(gldata.t);
+                timeAll();
+                return
+            }
+            gldata.ipsdata.map(ipd => {
+                let ii = ~~(Math.random() * (preREnderArr.length - 1))
+                renderSocketRes(ipd, preREnderArr[ii]);
+            });
+            c++
+        }, 1000 / count)
+    }
+    /* hql接口*/
+    function getHql(p) {
+        let params = {
+            "study": {
+                "where": {
+                    "id": p.id
+                },
+                "img_ais": {
+                    "$": ["res", "state", "regen"],
+                    "separate": true
+                },
+                "seriess": {
+                    "separate": true,
+                    "images": {
+                        "separate": true
+                    }
+                }
+            }
+        }
+        return new Promise(res => {
+            window.fetch('http://' + p.ip + ':' + p.port + '/index/hql', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(params),
+                }).then(response => response.json())
+                .then(function (data) {
+                    let imgais = JSON.parse(data.study.img_ais[0].res);
+                    let outputs = imgais.result.ai_series_outputs
+                    let series = outputs.filter(item => {
+                        return (item.RuntimeError == null || item.RuntimeError == false) && item
+                            .is_cardiac_cta
+                    })
+                    res(series)
+                })
+        })
+    }
+    /*socket返回的数据渲染*/
+    function renderSocketRes(IPData, Predata) {
+        if (!IPData.socket) return;
+        IPData.socket.emit('render-vr', {
+            data: Predata,
+            id: IPData.idx
+        });
+        if (IPData.callback) return
+        IPData.callback = ({
+            id,
+            data: {
+                base64Zip
+            }
+        }) => {
+            IPData.renderCount++
+            let imgs = gldata.views.children;
+            let findEl = Array.from(imgs).find(el =>
+                el
+                .getAttribute('data-idx') == id);
+            findEl.children[0].src = base64Zip;
+            findEl.setAttribute('recount', IPData.renderCount);
+        }
+        IPData.socket.on('callback', IPData.callback);
+    }
+    /*关于图片的滑动*/
+    function imgsMove() {
+        Array.from(gldata.views.children).map((el) => {
+            EventDownMove(el, el.getAttribute('data-idx'))
+        })
+        EventDownMove($("#cAll"), 1, {
+            move() {
+                gldata.ipsdata.map(ipd => {
+                    let i = ~~(Math.random() * (preREnderArr.length - 1))
+                    renderSocketRes(ipd, preREnderArr[i])
+                })
+            }
+        })
+
+        Array.from(document.querySelectorAll('.del-item')).map(el => {
+            el.onclick = () => {
+                let viewChildren = gldata.views.children
+
+                let idx = el.getAttribute('idx');
+                let ipdata = gldata.ipsdata[idx];
+                if (ipdata.socket) {
+                    ipdata.socket.emit('before-unload');
+                    ipdata.socket.close();
+                }
+
+                delete gldata.ipsdata[idx];
+                let index = Array.from(viewChildren).findIndex(el => el.getAttribute('data-idx') ==
+                    idx)
+                viewChildren[index].remove();
+                gldata.iplistEl.children[index].remove();
+            }
+        })
+    }
+
+    function EventDownMove(target, idx, Event) {
+        let down = false;
+        let downx = 0;
+        let downy = 0;
+        let _ipdata;
+        let _predata;
+        target.addEventListener('mousedown', e => {
+            down = true;
+            downx = e.x;
+            downy = e.y;
+            _ipdata = gldata.ipsdata[idx];
+            _predata = {
+                ...gldata.preRenderVr
+            }
+        })
+
+        document.addEventListener('mousemove', e => {
+            if (down && _ipdata) {
+                if (Event && Event.move) {
+                    Event.move(e);
+                    return
+                }
+                // let x = e.x - downx;
+                // let y = e.y - downy;
+                // console.log(x, y, _predata);
+                // _predata.rotation[0] += Math.random();
+                // _predata.rotation[1] += Math.random();
+                // _predata.rotation[2] += Math.random();
+                let i = ~~(Math.random() * (preREnderArr.length - 1))
+                renderSocketRes(_ipdata, preREnderArr[i])
+            }
+
+        });
+
+        document.addEventListener('mouseup', e => {
+            down = false;
+            _ipdata = null
+        })
+    }
+
+    /*连接*/
+    function content(ipsdata, type) {
+        let _c = 0; // 等待第一次的全部执行完成
+        ipsdata.map(d => {
+            // return new Promise(rrr => {
+            getHql(d).then(res => {
+                if (res.length < 1) {
+                    Spui.Message.error('socket ' + d.idx + '没有可用序列');
+                    return;
+                }
+                let seriesUid = res[0].SeriesInstanceUID
+                getPort('http://' + d.ip + ':9292/render/coronary' + d.params)
+                    .then(
+                        port => {
+                            let socket = d.socket = io('http://' + d.ip + ':' + port);
+                            socket.on('connect', () => {
+                                // rrr()
+                                _c++;
+                                setTimeout(() => Spui.Message.success('socket ' + d
+                                    .idx + '::连接成功'), d.idx * 100)
+
+                                setTimeout(() => {
+                                    socket.emit('init-data', {
+                                        seriesUid
+                                    });
+                                    renderSocketRes(d, gldata.preRenderVr);
+                                    if (_c == Object.keys(ipsdata).length && !type) {
+                                        Spui.Message.loading({
+                                                message: '3秒后开始循环执行。',
+                                                duration: 1000
+                                            })
+                                            .then(() => Spui.Message
+                                                .loading({
+                                                    message: '2秒后开始循环执行。',
+                                                    duration: 1000
+                                                }))
+                                            .then(() => Spui.Message
+                                                .loading({
+                                                    message: '1秒后开始循环执行。',
+                                                    duration: 1000
+                                                }))
+                                            .then(timeAll)
+                                    }
+                                })
+                            })
+                        })
+            })
+            // })
+        })
+    }
+    /*获取页面上的IPS数据*/
+    function getIpdatas() {
+        let ipsData = {}
+        let childrenMap = Array.from(gldata.iplistEl.children);
+        childrenMap.map(el => {
+            let elChildrenMap = Array.from(el.children);
+            let ipdata = {
+                params: '',
+                renderCount: 0, // 渲染次数
+            }
+            elChildrenMap.map(elItem => {
+                if (elItem.className.indexOf('ip-input') >= 0) {
+                    ipdata.idx = elItem.id;
+                    ipdata.ip = elItem.querySelector('input').value;
+                    ipdata.port = elItem.children[elItem.children.length - 1].children[0].querySelector(
+                        'input').value
+                }
+
+                if (elItem.className.indexOf('kv') >= 0) {
+                    let getKV = (num) => elItem.children[num].querySelector('input').value
+                    let k = getKV(0),
+                        v = getKV(1);
+                    ipdata.params += k + '=';
+                    ipdata.params += v + '&';
+                    ipdata[k] = v;
+                }
+            })
+            if (ipdata.params) {
+                ipdata.params = '?' + ipdata.params.slice(0, -1)
+            }
+            ipsData[ipdata.idx] = ipdata
+        })
+        // console.log(ipsData)
+        return ipsData
+    }
+    /*关闭socket*/
+    function closeSocketAll() {
+        if (Array.isArray(gldata.ipsdata)) {
+            gldata.ipsdata.map(i => {
+                i.socket.emit('before-unload')
+                i.socket.close();
+            })
+        }
+        $('#connect')['attr-type'] = 'primary';
+        $('#connect').innerText = '建立连接';
+    }
+    /*多次渲染ip 列表*/
+    function renderIplist(count = 1) {
+        let par = gldata.iplistEl;
+        par.innerHTML = gldata.views.innerHTML = ''
+        for (let i = 1; i <= count; i++) {
+            renderIplistItem(count, i, par, gldata.views)
+        }
+    }
+    /*单个渲染ip数据*/
+    function renderIplistItem(count, i, par, views) {
+
+        return new Promise(res => {
+            let html = `
+                <sp-button type='danger ' idx='${i}' classname='del-item'>删除</sp-button>
+                <b class='idx' style="margin:0 5px">socket ${i}:</b>
+                <sp-input id="${i}" classname='ip-input' addon-before='IP' addon-after='<sp-input value="8360"/>'
+                placeholder='请输入IP地址' allow-clear='true' value="10.2.112.138"></sp-input>
+                <div class='kv'>
+                <sp-input addon-before='key' value='id' style="width:100px"></sp-input>
+                <sp-input addon-before='value' value='1' style="width:100px"> </sp-input>
+                </div>
+                <em class='icon sp-icon sp-icon-icon_commone_fabu' re-ca='addicon'/>
+            `;
+            let el = strToEl(html);
+            let strImg = `<img class='gm-imgs' />`;
+            let img = strToEl(strImg, 'IMG')
+            img.setAttribute('data-idx', i);
+            par.append(el);
+            views.append(img);
+            res()
+        })
+    }
+    /*str 转 html*/
+    function strToEl(htmlStr, classname) {
+        let el = document.createElement('div');
+        el.className = classname
+        el.innerHTML = htmlStr;
+        return el
+    }
+    /*获取端口*/
+    function getPort(uri) {
+        return new Promise(res => {
+            window.fetch(uri).then(response => response.json())
+                .then(function (data) {
+                    res(data.port)
+                }).catch(function (err) {});
+        })
+    }
+
+    function $(name) {
+        return document.querySelector(name);
+    }
+</script>
+
+</html>

@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>撤回、回退</title>
+    <link rel="stylesheet" href="../lib/spui.css">
+    <script src="../lib/spui.js"></script>
+    <style>
+        .utils {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .re,
+        .un {
+            width: 70px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        .ji {
+            color: red;
+        }
+
+        .ou {
+            color: green;
+        }
+
+        .views {
+            flex: 1;
+            padding: 0 20px;
+            border: 1px solid;
+            border-top: none;
+            border-bottom: none;
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: column;
+        }
+
+        #redoStack,
+        #undoStack {
+            font-size: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+<body>
+    <sp-radio-group type='button' optiontype='button'>
+        <sp-radio id="undo">撤回</sp-radio>
+        <sp-radio id="redo">回退</sp-radio>
+    </sp-radio-group>
+
+    <div class="utils" style="width: 400px; height: 100px; border: 1px dashed; margin-top: 50px;">
+        <div class="re">
+            <sp-button shape='circle' size="mini" type="primary" icon="sp-icon-arrow-left" id="countLeft"></sp-button>
+        </div>
+
+        <div class="views" id="views"></div>
+        <div class="un">
+            <sp-button shape='circle' size="mini" type="primary" icon="sp-icon-arrow-right" id="countRight"></sp-button>
+        </div>
+    </div>
+
+    <div class="container" style="display: flex; margin-top: 50px;">
+        <div id="redoStack" style="width: 100px; height: 300px; border: 1px solid; margin-right: 50px;">
+            <span style="position: relative; left: 50%; margin-left: -15px; opacity: 0.4;">RedoAnUndo</span>
+        </div>
+        <!-- <div id="undoStack" style="width: 100px; height: 300px; border: 1px solid;">
+            <span style="position: relative; left: 50%; margin-left: -15px; opacity: 0.4;">Undo</span>
+        </div> -->
+    </div>
+
+
+
+</body>
+<script>
+    const countLeftEl = document.getElementById('countLeft');
+    const countRightEl = document.getElementById('countRight');
+    const viewsEl = document.getElementById('views');
+    const redoStackEl = document.getElementById('redoStack');
+    const undoStackEl = document.getElementById('undoStack');
+    const das = [
+        {
+            DataTransferItemList: '犯罪--中止'
+        },
+        {
+            DataTransferItemList: '犯罪--既遂'
+        },
+        {
+            DataTransferItemList: '犯罪--未遂'
+        },
+        {
+            DataTransferItemList: '紧急避险'
+        },
+        {
+            DataTransferItemList: '正当防卫'
+        },
+    ]
+
+    class Common {
+        Queue = [];
+
+        enqueue(t) {
+            this.Queue.push(t)
+            return this.Queue;
+        }
+
+        dequeue() {
+            return this.Queue.shift();
+        }
+
+        bdequeue() {
+            return this.Queue.pop();
+        }
+
+        fenqueue(t) {
+            return this.Queue.unshift(toString);
+        }
+
+        reset() {
+            this.Queue.length = 0
+        }
+
+        isEmpty() {
+            return this.Queue.length == 0
+        }
+
+        get length() {
+            return this.Queue.length
+
+        }
+
+    }
+
+
+
+    class QueueManager {
+        constructor() {
+            this.Queue = new Common();
+            this.index = 0; // 指针
+        }
+
+        // 撤回
+        undo() {
+
+            let data = this.Queue.Queue[this.index - 1];
+            this.index--
+            return data
+        }
+
+        // 回退
+        redo() {
+            let data = this.Queue.Queue[this.index];
+            this.index++
+            return data
+        }
+
+        takeTask(data) {
+        console.log('当前指针：：', this.index - 1, manager.Queue.Queue)
+            // this._redoQueue.reset();
+            this.Queue.Queue.splice(this.index - 1, this.length)
+            this.Queue.enqueue(data);
+        }
+
+        get length() {
+            return this.Queue.length
+        }
+
+
+    }
+
+    function beforeViewsEl(el) {
+        let fr = viewsEl.firstChild;
+        viewsEl.insertBefore(el, fr)
+    }
+
+    function createEl(content) {
+        let el = document.createElement('span');
+        let num = parseInt(content);
+        el.className = num % 2 === 0 ? 'ou' : 'ji'
+        el.innerHTML = content
+        return el
+    }
+
+    function appen(len) {
+        beforeViewsEl(createEl(len + '::' + das[len].DataTransferItemList))
+    }
+
+    function stackAppend(length, content) {
+        let el = document.createElement('span');
+        el.innerHTML = '' + length + content;
+        return el
+    }
+
+    let manager = new QueueManager();
+
+    let curcut = 0
+    countLeftEl.onclick = () => {
+        if (curcut == 0) return Spui.Message.error('最后一个啦.');
+        {
+            manager.index++
+            manager.takeTask(das[curcut]);
+            redoStackEl.append(stackAppend(manager.length, das[curcut].DataTransferItemList));
+        }
+
+        viewsEl.children[0].remove()
+        curcut--
+    }
+    countRightEl.onclick = () => {
+        if (curcut >= das.length - 1) return Spui.Message.error('最后一个啦.')
+        appen(curcut);
+        {
+            manager.index++
+            manager.takeTask(das[curcut]);
+            redoStackEl.append(stackAppend(manager.length, das[curcut].DataTransferItemList));
+        }
+        curcut++
+    }
+
+    window.manager = manager;
+
+    undo.onclick = () => {
+        if (manager.length <= 0) return Spui.Message.error('栈内存为空！')
+        let d = manager.undo();
+        if (redoStackEl.children.length > 0) {
+            redoStackEl.children[redoStackEl.children.length - 1].remove()
+        }
+        // undoStackEl.append(stackAppend(manager.length, d.DataTransferItemList));
+        console.log('当前指针：：', manager.index - 1, manager.Queue.Queue)
+    }
+
+    redo.onclick = () => {
+        if (manager.length <= 0) return Spui.Message.error('栈内存为空！')
+        let d = manager.redo();
+        if (d) {
+            // if (undoStackEl.children.length > 0) {
+            //     undoStackEl.children[undoStackEl.children.length - 1].remove()
+            // }
+            // redoStackEl.append(stackAppend(manager.length, d.DataTransferItemList));
+            console.log('当前指针：：', manager.index - 1, manager.Queue.Queue)
+        }
+
+    }
+</script>
+
+</html>

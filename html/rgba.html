@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RGBA</title>
+</head>
+
+<body>
+    <p>
+        可以看到， <code>new ImageData(1,1)</code>会输出一个4个数据的数组，每个数组都有这RGBA的色值
+        每个色值都有这0～255之间的可选值。如果你穿入<code>new ImageData(2,2)</code>他是一个2*2的大小，2*2的大小就会有4个色块，4个像素，每个像素也有相同的4个数据
+        所以就会有16个数据。
+    </p>
+    <script>
+
+        let canvas = document.createElement('canvas');
+        let ctx = canvas.getContext('2d');
+        let imgData = new ImageData(200, 200);
+        // imgdata.data.forEach((item, i ) => {
+        //     if((i + 1) % 4 == 0) {
+        //         imgdata.data[i] = 255
+        //     } if((i + 1) % 2 == 0)  {
+        //         imgdata.data[i] = 105
+        //     } else {
+        //         imgdata.data[i] = 255
+        //     }
+        // })
+        for (var i = 0; i < imgData.data.length; i += 4) {
+            imgData.data[i + 0] = 0;
+            imgData.data[i + 1] = 0;
+            imgData.data[i + 2] = 0;
+            imgData.data[i + 3] = 25;
+        }
+        console.log(imgData)
+        ctx.putImageData(imgData, 0, 0);
+        let ctx22 = canvas.getContext('2d');
+        console.log(ctx22.getImageData(0,0,200, 200), ctx22 == ctx)
+        document.body.append(canvas)
+    </script>
+</body>
+
+</html>

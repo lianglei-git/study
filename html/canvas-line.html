@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>canvas划线</title>
+</head>
+<style>
+    body,
+    html {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    canvas {
+        border: 1px solid;
+    }
+
+    span {
+        margin-top: 10px;
+        color: rgb(95, 89, 89);
+    }
+</style>
+
+<body>
+    <canvas width="400" height="400" id="c"></canvas>
+    <span>板块切割</span>
+</body>
+<script>
+    const canvas = document.getElementById('c');
+    const ctx = window.ctx = canvas.getContext('2d');
+    let map = {
+        startx: 0,
+        starty: 0,
+        flag: false
+    }
+    canvas.addEventListener('mousedown', e => {
+        map.startx = e.x - e.target.offsetLeft;
+        map.starty = e.y - e.target.offsetTop;
+        map.flag = true
+    })
+    let l = [];
+    canvas.addEventListener('mousemove', e => {
+        let chax = e.x - e.target.offsetLeft;
+        let chay = e.y - e.target.offsetTop;
+
+        if (map.flag) {
+            ctx.clearRect(0, 0, 400, 400);
+            l.push({
+                _x: chax,
+                _y: chay
+            });
+            ctx.strokeStyle = 'green';
+            console.log(l);
+            ctx.beginPath()
+            ctx.moveTo(map.startx, map.starty);
+            l.forEach(({
+                _x,
+                _y
+            }) => {
+                ctx.lineTo(_x, _y);
+            })
+            ctx.closePath()
+            ctx.stroke();
+
+        }
+    })
+    canvas.addEventListener('mouseup', e => {
+        map.flag = false
+        l = []
+    })
+</script>
+
+</html>

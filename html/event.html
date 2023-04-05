@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #a {
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+
+        #b {
+            width: 150px;
+            height: 150px;
+            background: yellow;
+
+        }
+
+        #c {
+            width: 100px;
+            height: 100px;
+            background: green;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="a">
+        <div id="b">
+            <div id="c"></div>
+        </div>
+    </div>
+</body>
+<script>
+    const _query = document.querySelector;
+    let ls = [document.querySelector('#a'), document.querySelector('#b'), document.querySelector('#c')];
+    // Array.from(ls).map(i => {
+    //     i.addEventListener('click', e => {
+    //         console.log(e.target.id + ' --> ', e)
+    //     })
+    // })
+    a.addEventListener('mousedown', e => {
+            console.log('a' + ' --> ', e.abs)
+        },true)
+        b.addEventListener('mousedown', e => {
+            console.log('b' + ' --> ', e.abs)
+        }, true)
+        c.addEventListener('mousedown', e => {
+            e.abs = 20;
+            console.log('c' + ' --> ', e.abs)
+        }, true)
+
+</script>
+
+</html>

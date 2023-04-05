@@ -1,0 +1,2 @@
+[2022-11-20T11:12:16.862] [INFO] cheese - { name: 'Nikos' } [Function (anonymous)] 32 ball [ Promise { '10' }, Set(1) { { kiss: false } } ] 10n [ [ [] ] ]
+[2022-11-20T11:23:49.792] [INFO] cheese - { name: 'Nikos' } [Function (anonymous)] 32 ball [ Promise { '10' }, Set(1) { { kiss: false } } ] 10n [ [ [] ] ]

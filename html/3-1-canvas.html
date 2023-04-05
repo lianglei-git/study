@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>canvas 渲染图片操作</title>
+</head>
+<body>
+
+    
+</body>
+<script>
+const canvas = document.createElement('canvas');
+const ctx = canvas.getContext('2d');
+canvas.height = 100
+canvas.width = 100
+
+let imageData = new ImageData(100, 100)
+var lens = 100 * 100;
+	for(var i = 0;i < lens;i++){
+		imageData.data[i * 4 + 3] = 25;
+	}
+ctx.putImageData(imageData, 0, 0)
+
+document.body.append(canvas)
+
+</script>
+</html>

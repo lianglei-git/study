@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="connectSocket()">链接socket</button>
+    <script src="../lib/socket.io.js"></script>
+    <script src="../lib/axios.min.js"></script>
+    <script src="../mock/init-data.js"></script>
+    <script src="../mock/render-vr.js"></script>
+    <script>
+        let port, socket;
+        const d = {
+            "data": {
+                "mat": [1, 0, 0, 0, 0, 2.220446049250313e-16, -1.2549019607843137, 0, 0, 1, 2.7864421010200007e-16, 0, 0, 0, 0, 1],
+                "ray": [0, 1, 2.7864421010200007e-16],
+                "rotation": [1.5707963267948963, 0, 0],
+                "rmat": [1, 0, 0, 0, 0, 2.220446049250313e-16, 1, 0, 0, -0.796875, 1.7694179454963432e-16, 0, 0, 0, 0, 1],
+                "ww": 780,
+                "wl": 300,
+                "use_scope": [1, 1, 0, 0],
+                "rescale_slop": 1,
+                "rescale_intercept": -1024,
+                "low": 1,
+                "step": 1200,
+                "use_small": 0,
+                "scope_opacity": 1,
+                "active_type": 1,
+                "cross": 0,
+                "panleSize": 1200,
+                "space": [0.5, 0.5, 0.5, 1],
+                "mode": 4,
+                "props": {
+                    "colorA": [255, 30, 30],
+                    "colorB": [230, 230, 230],
+                    "fresnel": 1,
+                    "expand": true,
+                    "maskOffset": 0
+                }
+            },
+            "id": 2
+        }
+        axios.get('http://' + '10.2.112.138' + ':9292/render/coronary?sid=' + 33).then(res => {
+            port = res.data.port;
+            console.log(port, '端口已经请求回来，可以连接socket')
+        })
+        window.connectSocket = () => {
+            console.log(initData, renderVrData)
+            if (socket) console.log('已经有socket');
+            socket = io('http://10.2.112.138:' + port, {
+                autoConnect: false
+            });
+            socket.on('callback', function (data) {
+                console.log(data)
+            });
+            socket.on('toDataURL', function (toDataURL) {
+                console.log(toDataURL, 'toDataURL');
+                let img = document.createElement('img');
+                img.src = toDataURL;
+                document.body.appendChild(img);
+            });
+            socket.on('toDataURL1', function (toDataURL) {
+                console.log(toDataURL, 'toDataURL111111');
+                let img = document.createElement('img');
+                img.src = toDataURL;
+                document.body.appendChild(img);
+            });
+            socket.on('toBlob', function (toBlob) {
+                console.log(toBlob, 'toBlob');
+                let img = document.createElement('img');
+                img.src = toBlob;
+                document.body.appendChild(img);
+            });
+
+            socket.on("connect", () => {
+                console.log(socket.id); // "G5p5..."
+            });
+            var step = function () {
+                setTimeout(step, 1000);
+                socket.emit('hert', 'wowkwow');
+                console.log('发送心跳')
+            };
+
+            setTimeout(() => {
+                console.log('开始链接')
+                socket.connect();
+                // socket.emit('init-data', initData);
+                // socket.emit('render-vr', renderVrData);
+                // step();
+            }, 1000)
+
+            window.socket = socket;
+        }
+
+        let canvas = document.createElement('canvas');
+        canvas.width = 3840;
+        canvas.height = 2160;
+        let ctx = canvas.getContext('2d')
+        let datas = new ImageData(100, 100)
+        for (let i = 0; i < datas.data.length; i++) {
+            if (i % 3 !== 0) {
+                datas.data[i] = 2
+            } else datas.data[i] = 255
+
+        }
+        ctx.putImageData(datas, 0, 0);
+        document.body.append(canvas)
+
+
+        /// 测试base64 加载src是不是异步
+        let imgBs = document.createElement('img');
+        imgBs.setAttribute("crossOrigin", 'Anonymous')
+        imgBs.src = 'http://localhost:3000/kskf.jpeg'
+        console.log(imgBs.width)
+        imgBs.onload = () => {
+            ctx.drawImage(imgBs, 0, 0);
+        console.log(imgBs.width)
+
+            let btn = document.createElement('button');
+            btn.innerHTML = '复制一份';
+            btn.onclick = () => {
+                let base64 = canvas.toDataURL();
+                let tmp_img = document.createElement('img');
+                tmp_img.src = base64;
+                document.body.append(tmp_img)
+                console.log(tmp_img.width, '同步')
+                tmp_img.onload = () => {
+                    console.log(tmp_img.width, '这是异步')
+                }
+            }
+            document.body.append(btn)
+
+        }
+        //
+
+    </script>
+</body>
+
+</html>

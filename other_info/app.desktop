@@ -1,0 +1,5 @@
+[Desktop Entry]
+Name = app
+Exec = /home/yizhun/Desktop/MG2D-electron-linux-x64/MG2D-electron 
+Type = Application
+Icon = /home/yizhun/docker/project/yizhun_web/pacs/www/static/favicon.ico

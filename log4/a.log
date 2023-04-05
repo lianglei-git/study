@@ -1,0 +1,6 @@
+{ name: 'Nikos' } [Function (anonymous)] 32 ball [ Promise { '10' }, Set(1) { { kiss: false } } ] 10n [ [ [] ] ] Logger {
+  category: 'cheese',
+  context: {},
+  callStackSkipIndex: 0,
+  parseCallStack: [Function: defaultParseCallStack]
+}
