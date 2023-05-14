@@ -31,7 +31,7 @@ module.exports = {
 			filename:'index.html'
         }),
         new MiniCss({
-            filename: 'css/[name].css'
+            filename: 'css/iconfont.css'
         })
     ]
 }
