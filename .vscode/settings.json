@@ -1,4 +1,5 @@
 {
     "commentTranslate.targetLanguage": "zh-CN",
-    "compile-hero.disable-compile-files-on-did-save-code": true
+    "compile-hero.disable-compile-files-on-did-save-code": true,
+    "cmake.sourceDirectory": "/Users/sparrow/Desktop/sparrow-work/sparrow_private/study/cmake/build-SharedAndStatic_install"
 }

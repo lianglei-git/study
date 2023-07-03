@@ -77,6 +77,19 @@ rand.Seed(time.Now().UTC().UnixNano())
     log.Fatal(http.ListenAndServe("localhost:9000", nil))
 }
 
+
+/// js
+
+// for(let i = 0; i< 1500;i++){
+//     if(i<300 && i>200){
+
+//     }
+// }
+
+///
+
+
+
 // handler echoes the HTTP request.
 func handler(w http.ResponseWriter, r *http.Request) {
     fmt.Fprintf(w, "%s %s %s\n", r.Method, r.URL, r.Proto)
