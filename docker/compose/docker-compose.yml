@@ -1,0 +1,13 @@
+services:
+    webpy:
+      build: ./python
+      ports: 
+        - 1020:5000
+    redis:
+      image: "redis:alpine"
+    webgo:
+      build: ./go
+      ports: 
+        - 1030:8030
+
+        
