@@ -93,3 +93,11 @@
 14. docker kill - 强制停止指定的容器
 15. docker tag - 给镜像打标签
 16. docker push
+
+
+
+
+
+导出 ---> `docker save <image_name> > <image_name>.tar`
+加载 ---> `docker load < <image_name>.tar`
+发布 ---> `docker push <image_name>`

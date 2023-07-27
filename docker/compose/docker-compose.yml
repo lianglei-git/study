@@ -3,6 +3,10 @@ services:
       build: ./python
       ports: 
         - 1020:5000
+      volumes:
+        - ./python:/code
+      environment:
+        FLASK_DEBUG: "true"
     redis:
       image: "redis:alpine"
     webgo:
