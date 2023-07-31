@@ -1,0 +1,1 @@
+https://course.rs/compiler/pitfalls/use-vec-in-for.html
