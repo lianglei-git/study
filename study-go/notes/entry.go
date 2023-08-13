@@ -13,11 +13,11 @@ import (
 
 
 // --------------- 随机数 ---------------
-心里种下一颗种子 达拉第大啦 rand.Seed(time.Now().UTC().UnixNano()) 
-使用种子 rand.Intn(2) 0～2的随机数哦
+// 心里种下一颗种子 达拉第大啦 rand.Seed(time.Now().UTC().UnixNano()) 
+// 使用种子 rand.Intn(2) 0～2的随机数哦
 
 // --------------- length ---------------
-kk.length --> len() 这是个全局函数
+// kk.length --> len() 这是个全局函数
 
 
 // --------------- for ---------------
