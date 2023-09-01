@@ -1,0 +1,4 @@
+docker run -d -p 20338:20338 -p 20338:20338/udp \
+  --name ss-libev \
+  -v /Users/sparrow/Desktop/sparrow-work/sparrow_private/study/docker/socks:/etc/shadowsocks-libev \
+  appso/shadowsocks-libev

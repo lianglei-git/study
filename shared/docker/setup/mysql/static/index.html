@@ -1,0 +1,62 @@
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>登录</title>
+  <script src="./axios.min.js"></script>
+</head>
+<div>
+  <div>
+    用户名:
+    <input id="user"/>
+  </div>
+  <div>
+    密码:
+    <input id="pass"/>
+  </div>
+  <div>
+    <button onclick="login()">登录</button>
+    <button onclick="logout()">登出</button>
+  </div>
+  <div id="state"></div>
+  <div id="output"></div>
+  <div style="margin-top: 30px;">
+    <button onclick="select();">查询</button>
+  </div>
+</div>
+
+<script>
+/** 用户名输入框 */
+const user = document.getElementById("user");
+/** 密码输入框 */
+const pass = document.getElementById("pass");
+/** 状态输出 */
+const state = document.getElementById("state");
+/** SQL输出 */
+const output = document.getElementById("output");
+
+/** 登录功能 */
+const login = async ()=>{
+  /** 请求登录 */
+  const info = await axios.post("/api/login",{user:user.value,pass:pass.value});
+  output.innerText = info.data.sql;
+  if(info.data.code === 0){
+    state.innerText = "登录成功!";
+  }else{
+    state.innerText = "登录失败!";
+  }
+}
+
+/** 登出功能 */
+const logout = async ()=>{
+  const data = await axios.get("/api/logout");
+  console.log(data);
+}
+
+/** 查询数据 */
+const select = async ()=>{
+  const info = await axios.get("/api/class");
+  console.log(info.data);
+}
+
+</script>
+</html>

@@ -5,13 +5,18 @@ services:
         - 1020:5000
       volumes:
         - ./python:/code
+        - ./shared:/shared
       environment:
         FLASK_DEBUG: "true"
     redis:
       image: "redis:alpine"
     webgo:
       build: ./go
+      volumes:
+        # - ./go:/code
+        - ./shared:/shared
       ports: 
         - 1030:8030
+        
 
         

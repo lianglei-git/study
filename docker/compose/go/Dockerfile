@@ -9,6 +9,6 @@ EXPOSE 8030
 
 COPY . .
 
-# CMD ["go", "run", "main.go"]
+CMD ["go", "run", "main.go"]
 
-CMD ["./main"]
+# CMD ["./main"]
