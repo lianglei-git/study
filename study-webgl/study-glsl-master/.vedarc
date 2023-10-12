@@ -1,0 +1,21 @@
+{
+  "audio": false,
+  "camera": false,
+  IMPORTED: {
+    "cat1": {
+      "PATH": "_image/cat_01.jpg",
+    },
+    "cat2": {
+      "PATH": "_image/cat_02.jpg",
+    },
+    "disp": {
+      "PATH": "_image/displacement.jpg",
+    },
+    "japan1": {
+      "PATH": "_video/japan_1.mp4",
+    },
+    "japan2": {
+      "PATH": "_video/japan_2.mp4",
+    },
+  },
+}
