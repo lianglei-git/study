@@ -6,8 +6,8 @@ uniform vec2 u_resolution;
 uniform vec2 u_mouse;
 uniform float u_time;
 uniform sampler2D u_backbuffer;
-uniform sampler2D japan1;
-uniform sampler2D japan2;
+uniform sampler2D u_texture_japan1;
+uniform sampler2D u_texture_japan2;
 
 // Simplex 2D noise
 vec3 permute(vec3 x){ return mod(((x*34.0)+1.0)*x, 289.0); }
@@ -74,8 +74,8 @@ void main()
 		tUv.y + (1. - dispFactor) * (snoise(tUv * 2.) * effectFactor)
 	);
 
-	vec4 _texture1 = texture2D(japan1, pos1);
-	vec4 _texture2 = texture2D(japan2, pos2);
+	vec4 _texture1 = texture2D(u_texture_japan1, pos1);
+	vec4 _texture2 = texture2D(u_texture_japan2, pos2);
 
 	vec4 destTexture = mix(_texture1, _texture2, dispFactor);
 

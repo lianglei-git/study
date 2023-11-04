@@ -1,5 +1,16 @@
 {
     "commentTranslate.targetLanguage": "zh-CN",
     "compile-hero.disable-compile-files-on-did-save-code": true,
-    "cmake.sourceDirectory": "/Users/sparrow/Desktop/sparrow-work/sparrow_private/study/cmake/build-SharedAndStatic_install"
+    "cmake.sourceDirectory": "/Users/sparrow/Desktop/sparrow-work/sparrow_private/study/cmake/build-SharedAndStatic_install",
+    "glsl-canvas.textures": {
+        "japan1":"./study-webgl/study-glsl-master/_video/japan_1.mp4",
+        "japan2":"./study-webgl/study-glsl-master/_video/japan_2.mp4",
+        "cat1":"./study-webgl/study-glsl-master/_image/cat_01.jpg",
+        "cat2":"./study-webgl/study-glsl-master/_image/cat_02.jpg",
+        "disp":"./study-webgl/study-glsl-master/_image/displacement.jpg",
+    },
+    "glsl-canvas.uniforms": {
+        "u_strength": 1.0,
+        "u_random": 0.0,
+    }
 }
