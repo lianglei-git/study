@@ -1,0 +1,18 @@
+{
+  "name": "training",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start:web": "vite",
+    "start:node": "vite-node server.ts",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "@cornerstonejs/core": "^1.71.1",
+    "@cornerstonejs/dicom-image-loader": "^1.71.1",
+    "dicom-parser": "^1.8.21",
+    "vite": "^5.2.11",
+    "vite-node": "^1.6.0"
+  }
+}

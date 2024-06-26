@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        #result_time {
+            display: flex;
+            flex-wrap: wrap;
+        }
+        #result_time>div{
+            margin: 10px;
+            border: 1px solid rgb(156, 153, 153);
+            border-bottom: none;
+            width: 300px;
+            font-size: 22px;
+        }
+        #result_time>div>b{
+            width: 100%;
+            display: block;
+            text-align: center;
+        }
+        #result_time>div>p{
+            border-bottom: 1px solid;
+            margin: 0;
+            line-height: 40px;
+            padding: 0 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <p>输入：<input type="number" id="num"></p>
+    <p>输出：<span id="result"></span></p>
+    <div id="result_time">
+
+    </div>
+    <script src="fibonacci.js"></script>
+    <script>
+        var fib = (n) => {
+            // if (n < 2) {
+            //     return 1;
+            // }
+            // return fib(n - 1) + fib(n - 2);
+            let total = 0 | 0;
+    for(let i = 0 | 0; i < n; i++){
+      total+=i;
+    }
+    return total;
+        };
+        num.onkeydown = (e) => {
+            if(e.keyCode!==13)return;
+            const div = document.createElement("div");
+            let html = ''
+            let start = performance.now();
+            const ret = _fibonacci(num.value);
+            result.innerText = ret;
+            let ms = (performance.now() - start) / 10;
+            ms =ms.toFixed(4);
+            console.log("Wasm::", ms + "ms");
+            html += `
+            <b>输入：${num.value}</b>
+            <p>Wasm: ${ms} ms</p>
+            `
+            start = performance.now();
+            fib(num.value)
+            ms = (performance.now() - start) / 10;
+            ms =    ms.toFixed(4);
+            console.log("JS::", ms + "ms");
+            html += `
+            <p> JS:&emsp;  ${ms} ms</p>
+            `
+            div.innerHTML = html;
+            result_time.append(div)
+        }
+    </script>
+</body>
+
+</html>

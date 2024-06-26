@@ -1,0 +1,16 @@
+version: "3"
+
+services:
+  golang:
+    build: ./mgo
+    ports:
+      - "8088:8088"
+    links:
+      - "mongo"
+    volumes:
+      - ./mgo:/go/src/app
+    tty: true     
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"

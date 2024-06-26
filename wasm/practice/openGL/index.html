@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+</head>
+
+<body>
+  <button id="update">更新</button>
+  <h3>
+    🌰： _updateColor(1,0);
+  </h3>
+  <canvas></canvas>
+  <p>是否命中🎯(x1小于0.5):<b id="dom_hit"></b></p>
+  <script>
+    const canvas = document.querySelector('canvas');
+    var Module = {
+      canvas: canvas,
+    };
+    const step = 0.1;
+    let cur = 0;
+    let inverse = false;
+    let time
+
+    update.onclick = () => {
+      clearInterval(time);
+      time = setInterval(() => {
+        if (window._updateColor) {
+          if (inverse) {
+            cur += step;
+          } else {
+            cur -= step;
+          }
+          if (cur > 1) {
+            cur = 1;
+            inverse = false;
+          }
+          if (cur < -1) {
+            cur = -1;
+            inverse = true;
+          }
+          window._updateColor(cur, 0.5)
+        }
+      }, 500);
+    }
+  </script>
+  <script src="./index.js"></script>
+</body>
+
+</html>

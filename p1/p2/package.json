@@ -1,12 +1,11 @@
 {
-  "name": "study",
+  "name": "p2",
   "version": "1.0.0",
-  "description": "- 算法 - typescript - 图形学 - 源码学习 - 等等",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
