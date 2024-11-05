@@ -10,10 +10,34 @@
             height: 400px;
             background-color: rgba(52, 137, 211, 0.376);
         }
+        table {
+            height: 300px;
+            overflow: auto;
+        }
     </style>
 </head>
 <body>
     <input id="root" type="file"> </input>
+    <div class="tools">
+       <p> <input type="checkbox" id="tools-simple"> 单线程 </p>
+       <p> <input value="1000" id="tools-tasks"> 任务量 </p>
+
+    </div>
+    <p id="tableTips"></p>
+
+    <table >
+        <thead>
+            <tr>
+                <th>次数</th>
+                <th>时间</th>
+            </tr>
+        </thead>
+        <tbody id="table-debug">
+
+        </tbody>
+       
+       
+    </table>
     <script src="index.ts" type="module"></script>
 </body>
 </html>

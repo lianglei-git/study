@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mini-Effect</title>
+</head>
+
+<body>
+  <script>
+    function ref(value) {
+      const result = {
+        _value: value,
+        get value() {
+          track(result, 'get', 'value');
+          return result._value;
+        },
+        set value(newValue) {
+          if (result._value !== newValue) {
+            result._value = newValue;
+            trigger(result, 'set', 'value', newValue);
+          }
+        }
+      };
+      return result;
+    }
+
+    function reactive(target) {
+      const handler = {
+        get(target, key, receiver) {
+          track(target, 'get', key);
+          return Reflect.get(target, key, receiver);
+        },
+        set(target, key, value, receiver) {
+          const oldVal = target[key];
+          if (!Object.is(oldVal, value)) {
+            target[key] = value;
+            trigger(target, 'set', key, value);
+          }
+          return true;
+        }
+      };
+      return new Proxy(target, handler);
+    }
+
+    let activeEffect;
+
+    const targetMap = new WeakMap();
+
+    function effect(eff, options = {}) {
+      if (!options.lazy) {
+        activeEffect = eff;
+        eff();
+        activeEffect = null;
+      } else {
+        let value;
+        let computed = () => {
+          if (!options.scheduler || !options.scheduler()) {
+            value = eff();
+          }
+        };
+        computed();
+        effect(computed, options);
+        return () => value;
+      }
+    }
+
+    function track(target, type, key) {
+      if (activeEffect) {
+        let depsMap = targetMap.get(target);
+        if (!depsMap) {
+          targetMap.set(target, (depsMap = new Map()));
+        }
+        let dep = depsMap.get(key);
+        if (!dep) {
+          depsMap.set(key, (dep = new Set()));
+        }
+        dep.add(activeEffect);
+      }
+    }
+
+    function trigger(target, type, key, newValue) {
+      const depsMap = targetMap.get(target);
+      if (depsMap) {
+        const effects = depsMap.get(key);
+        if (effects) {
+          effects.forEach(effectFn => {
+            if (effectFn !== activeEffect) {
+              effectFn();
+            }
+          });
+        }
+      }
+    }
+
+
+    const state = reactive({
+      value: 1
+    })
+    effect(() => {
+      console.log(state.value, "00000")
+    });
+
+    window.state = state
+  </script>
+</body>
+
+</html>
