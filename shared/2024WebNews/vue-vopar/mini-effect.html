@@ -7,25 +7,14 @@
   <title>Mini-Effect</title>
 </head>
 
+<button id="Add">Add</button>
+<button id="Subtract">Subtract</button>
+
 <body>
   <script>
-    function ref(value) {
-      const result = {
-        _value: value,
-        get value() {
-          track(result, 'get', 'value');
-          return result._value;
-        },
-        set value(newValue) {
-          if (result._value !== newValue) {
-            result._value = newValue;
-            trigger(result, 'set', 'value', newValue);
-          }
-        }
-      };
-      return result;
-    }
-
+  /**
+   * 大概思路就是，proxy拦截参数和触发回调
+   */
     function reactive(target) {
       const handler = {
         get(target, key, receiver) {
@@ -49,21 +38,9 @@
     const targetMap = new WeakMap();
 
     function effect(eff, options = {}) {
-      if (!options.lazy) {
         activeEffect = eff;
         eff();
         activeEffect = null;
-      } else {
-        let value;
-        let computed = () => {
-          if (!options.scheduler || !options.scheduler()) {
-            value = eff();
-          }
-        };
-        computed();
-        effect(computed, options);
-        return () => value;
-      }
     }
 
     function track(target, type, key) {
@@ -94,6 +71,7 @@
       }
     }
 
+    /* 写完了就这么多 */
 
     const state = reactive({
       value: 1
@@ -103,6 +81,9 @@
     });
 
     window.state = state
+
+    Add.onclick = () => state.value++;
+    Subtract.onclick = () => state.value--
   </script>
 </body>
 

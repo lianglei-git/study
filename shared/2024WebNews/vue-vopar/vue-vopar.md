@@ -10,7 +10,7 @@
 
 **没有虚拟DOM**、**高性能**、**更小的包体积**。
 
-**没有虚拟DOM：**意思很简单，就是在Vue Vapor中已经将虚拟DOM给干掉了。
+**没有虚拟DOM**：意思很简单，就是在Vue Vapor中已经将虚拟DOM给干掉了。
 
 **高性能**：因为干掉了虚拟DOM，瓶颈得以突破，所以性能相对提高了很多。
 
@@ -69,4 +69,4 @@ container.append(label, button)
 
 
 
-[mini-effect: 也可以简单看看Effect的实现](mini-effect.html)
+[mini-effect: 也可以简单看看Effect的实现](./mini-effect.html)

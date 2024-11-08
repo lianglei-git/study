@@ -3,7 +3,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       
-      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css">
+      <link rel="stylesheet" href="file:////Users/sparrow/.vscode/extensions/shd101wyy.markdown-preview-enhanced-0.8.14/crossnote/dependencies/katex/katex.min.css">
       
       
       
@@ -20,20 +20,41 @@
     // your code here
   });
 </script></head><body for="html-export">
-    
+    <pre>
+
+ Web Weekly
+     Small talk
+          1） Vue Vopar -- (2024)年底发布alpha版本（2023年中旬建库）
+          1） 补充 - svelte
+          1） 补充 - React RSC， HTMX
+          2） ArkTS (纯血鸿蒙)
+          3） CommonJS 和 ES Module 终于要互相兼容了？？？
+          4） Js 运行时
+          5） 引擎
+          6） 跨平台框架
+          7） 构建系统
+          8） 新的样式解决方案和组件库将持续涌现（开放话题）
+          9） 其他
+     观点（均为个人观点）
+          1） 关于 Web-Component
+          2） 前端、后端和全栈开发之间的界限将越来越模糊
+          3） 无障碍性
+    </pre>
     
       <div class="crossnote markdown-preview  ">
       
-<h1 id="web-weekly">Web Weekly </h1>
-<h3 id="1-vue-vopar---2024年底发布alpha版本2023年中旬建库">1. Vue Vopar -- (2024)年底发布alpha版本（2023年中旬建库） </h3>
-<p>[<strong>摘要</strong>] Vapor Mode是Vue.js的一种编译策略，可以提高Vue.js应用的性能。<s>通过Vue Vapor SFC Playground和Vue Volar Template Explorer可以体验和探究Vapor Mode。开启Vapor Mode的方法是升级vue和@vitejs/plugin-vue的版本，并将createApp改为createVaporApp。Vapor Mode的编译产物特点包括模板编译、渲染效果和文本设置。Vapor Mode优化了性能和API使用。总体来说，Vapor Mode为Vue生态系统带来了前所未有的变革，为开发者提供更高效的开发体验。</s></p>
-<p><a href="https://github.com/vuejs/vue-vapor">Vapor Mode</a>是 Vue.js没有虚拟 DOM的一种编译策略。</p>
+<h1 id="-web-weekly">🚚 Web Weekly </h1>
+<h2 id="-small-talk">🍵 Small talk </h2>
+<h3 id="1-vue-vopar---2024年底发布alpha版本2023年中旬建库">1）🔁 Vue Vopar -- (2024)年底发布alpha版本（2023年中旬建库） </h3>
+<p>「<strong>摘要</strong>」 Vapor Mode是Vue.js的一种编译策略，可以提高Vue.js应用的性能。<s>通过Vue Vapor SFC Playground和Vue Volar Template Explorer可以体验和探究Vapor Mode。开启Vapor Mode的方法是升级vue和@vitejs/plugin-vue的版本，并将createApp改为createVaporApp。Vapor Mode的编译产物特点包括模板编译、渲染效果和文本设置。Vapor Mode优化了性能和API使用。总体来说，Vapor Mode为Vue生态系统带来了前所未有的变革，为开发者提供更高效的开发体验。</s></p>
+<p>请看VCR⬇️<br>
+<a href="./vue-vopar/vue-vopar.html">Vapor Mode</a>是 Vue.js没有虚拟 DOM的一种编译策略。</p>
 <p><img src="./assets/performance.png" alt="per"></p>
-<h3 id="1-补充---sveltesvelteindexmd">1. 补充 - <a href="./svelte/index.md">svelte</a> </h3>
+<h3 id="1-补充---sveltesvelteindexhtml">1）🔂 补充 - <a href="./svelte/index.html">svelte</a> </h3>
 <blockquote>
 <p>在线查看 svelte 编译后的结果和 react 编译后的结果（用Bun编译）</p>
 </blockquote>
-<h3 id="1-补充-react---rsc-htmx">1. 补充 React - RSC， HTMX </h3>
+<h3 id="1-补充---react--rsc-htmx">1）⏪ 补充 - React  RSC， HTMX </h3>
 <p><strong>结论</strong>：我们在朝向前后端冗余合并的状态出发。</p>
 <p>RSC（人话）：既要服务端渲染，又要处理数据<br>
 <a href="https://segmentfault.com/a/1190000044287819">HTMX</a>： 后端主导的框架，不用写JS并且可以请求的HTML（通过编译实现）；类似👇这样</p>
@@ -48,7 +69,7 @@
 
 
 
-</code></pre><h3 id="2-arkts-纯血鸿蒙">2. ArkTS (纯血鸿蒙) </h3>
+</code></pre><h3 id="2-arkts-纯血鸿蒙">2）🇨🇳 ArkTS (纯血鸿蒙) </h3>
 <p>是华为为鸿蒙系统开发的声明式编程语言，它基于 TypeScript 构建，并扩展了特定于鸿蒙平台的特性。ArkTS 提供了简洁的语法和丰富的功能，使得开发者可以以更高效的方式开发鸿蒙应用。</p>
 <p>简单的Demo代码</p>
 <pre data-role="codeBlock" data-info="ts" class="language-ts ts"><code><span class="token comment">// Index.ets</span>
@@ -68,7 +89,7 @@ struct Index <span class="token punctuation">{</span>
     <span class="token punctuation">}</span>
   <span class="token punctuation">}</span>
 <span class="token punctuation">}</span>
-</code></pre><h3 id="3-commonjs-和-es-module-终于要互相兼容了">3. CommonJS 和 ES Module 终于要互相兼容了？？？ </h3>
+</code></pre><h3 id="3-commonjs-和-es-module-终于要互相兼容了">3）👎🏿 CommonJS 和 ES Module 终于要互相兼容了？？？ </h3>
 <p>大家在coding过程中。<br>
 <a href="https://juejin.cn/post/6844903520865386510#heading-1">先问问大家几个问题-链接原文</a>：</p>
 <ul>
@@ -101,7 +122,7 @@ struct Index <span class="token punctuation">{</span>
 <p><a href="./CommonJS%20%E5%92%8C%20ES%20Module%20%E7%BB%88%E4%BA%8E%E8%A6%81%E4%BA%92%E7%9B%B8%E5%85%BC%E5%AE%B9%E4%BA%86%EF%BC%9F%EF%BC%9F%EF%BC%9F.htm">CommonJS 和 ES Module</a></p>
 <p>现实中例子的应用： 我们服务端渲染项目</p>
 <p style="color:red;font-weight:600">在Deno，Bun中模块混合已经得到解决。</p>
-<h3 id="4-js-运行时">4. Js 运行时 </h3>
+<h3 id="4-js-运行时">4）🏇 Js 运行时 </h3>
 <ul>
 <li>Nodejs</li>
 <li><a href="https://www.sohu.com/a/817690621_121798711">Deno 2.0</a> 引领前端包管理新纪元</li>
@@ -110,21 +131,24 @@ struct Index <span class="token punctuation">{</span>
 <p>Nodejs开发过程中的瓶颈可以说的非常的多哈。因为现代话技术，rust，go，web融合在一块的网络，依赖管理，生产运行，单线程的压力，尽管尽管有了多线程的支持。<br>
 牛逼在老，生态高，像是php的替代品一样。</p>
 <p>Deno 是nodejs原作者重构的新进步，对Nodejs的安全性（关于文件系统的访问，网络，环境变量）这是由沙箱环境创造的，第二点也是我们前面提过的 JS规范的改正（ES，与CommonJs）。包括直接网络引用依赖，总结一句话，把现代的WEB与新款的Node合并优点。所以形成了优势，但是引擎的使用是一样的（V8）。而弊端就是生态。<br>
-你可以像这样运行<code>deno run https://docs.deno.com/examples/hello-world.ts</code><br>
-- 原生支持太多现代化的东西了，例如jsx <a href="./runtime/deno/main.tsx">main</a><br>
-- hono实现的直接支持的jsx返回<a href="./runtime/deno/hono/main.tsx">hono</a> <em>hono 是类似 koa，express的tiny库</em><br>
--</p>
-<p><a href="https://bun.sh/">Bun</a><s>点进去看看下官网介绍，性能差异</s>，我觉得这东西连蒙带猜，也能写出来几个demo。<br>
-- <a href="./runtime/bun/react.tsx">react.tsx</a> -- bun run react.tsx<br>
-- <a href="./runtime/bun/server.tsx">server.tsx</a> -- bun run server.tsx<br>
-官网的Bun给我的信息是：</p>
+你可以像这样运行<code>deno run https://docs.deno.com/examples/hello-world.ts</code></p>
+<ul>
+<li>原生支持太多现代化的东西了，例如jsx <a href="./runtime/deno/main.tsx">main</a></li>
+<li>hono实现的直接支持的jsx返回<a href="./runtime/deno/hono/main.tsx">hono</a> <em>hono 是类似 koa，express的tiny库</em></li>
+</ul>
+<p><a href="https://bun.sh/">Bun</a><s>点进去看看下官网介绍，性能差异</s>，我觉得这东西连蒙带猜，也能写出来几个demo。</p>
+<ul>
+<li><a href="./runtime/bun/react.tsx">react.tsx</a> -- bun run react.tsx</li>
+<li><a href="./runtime/bun/server.tsx">server.tsx</a> -- bun run server.tsx</li>
+</ul>
+<p>官网的Bun给的信息是：</p>
 <ul>
 <li><strong>一体化的工具</strong>（<strong>运行、构建、测试和调试，以及从单个文件到全栈应用的 JS 和 TS 项目</strong>）</li>
 <li>自己有自己的包管理（Bunx）</li>
 <li>自己给自己打包</li>
 <li>等等等等</li>
 </ul>
-<p>现代关键字梳理：</p>
+<p><strong>现代</strong>关键字梳理：</p>
 <ul>
 <li>EsM 与 Common混合</li>
 <li>Promise</li>
@@ -144,7 +168,7 @@ struct Index <span class="token punctuation">{</span>
 Bun在云支持方面明显做的不足。</p>
 <p>如今的我们在使用express.js可以很快就搭建起运行API。<br>
 但是，目前最具挑战性的部分是选择合适的 <strong>JavaScript</strong> 引擎（下一个话题）。</p>
-<h3 id="5-引擎">5. 引擎 </h3>
+<h3 id="5-️-引擎">5） ⚙️ 引擎 </h3>
 <ul>
 <li><a href="https://cloud.tencent.com/developer/article/1801742">JS 引擎</a></li>
 </ul>
@@ -166,7 +190,7 @@ Bun在云支持方面明显做的不足。</p>
 </ul>
 </li>
 </ul>
-<h3 id="6-跨平台框架">6. 跨平台框架 </h3>
+<h3 id="6--跨平台框架">6) 💻 跨平台框架 </h3>
 <p>跨平台框架多多少少会出入在我们的视线中，超一线的大厂也在循序渐进的改用Fultter架构。<br>
 但是。在全球市场上⬇️⬇️<br>
 据透露，今年 React Native 相关的工作岗位数量是 Flutter 的6倍，而且Hixie和Tim Sneath都离开了谷歌，Tim 甚至在宣传SwiftUI。Flutter 开发者陷入了一种生存危机，被谷歌杀死的梦魇前所未有地逼近。</p>
@@ -180,11 +204,68 @@ Bun在云支持方面明显做的不足。</p>
 </blockquote>
 <p><strong>原理</strong>：很像是webview，但其实不是webview，就使用<strong>原生平台的渲染引擎</strong>来绘制UI组件，这意味着在iOS上使用UIKit，在Android上使用Android SDK，从而保证了UI的原生性能和外观<br>
 去尝试你想尝试的吧。</p>
-<h3 id="7-构建系统">7. 构建系统 </h3>
+<h3 id="7-️-构建系统">7） ✈️ 构建系统 </h3>
 <p>说到构建系统，我们看到了越来越多的下一代构建工具，如 SWC 和 Esbuild，还有更多与它们相配套的捆绑工具。Rome 垮台，Biome崛起。Turbopack去年宣称自己是 Webpack 的继任者，但今年Rspack挥舞着诉状冲进法庭。与此同时，Metro 仍然是 React Native 的首选武器。</p>
-<h3 id="8-新的样式解决方案和组件库将持续涌现">8. 新的样式解决方案和组件库将持续涌现 </h3>
-<p>css-in-js</p>
-<h3 id="9-其他">9. 其他 </h3>
+<h3 id="8--新的样式解决方案和组件库将持续涌现开放话题">8） 🪫 新的样式解决方案和组件库将持续涌现（开放话题） </h3>
+<p><strong>css-in-js</strong><br>
+你可能会问，它们与"CSS 预处理器"（比如 Less 和 Sass，包括 PostCSS）有什么区别？回答是 CSS in JS 使用 JavaScript 的语法，是 JavaScript 脚本的一部分，不用从头学习一套专用的 API，也不会多一道编译步骤。</p>
+<p><code>pandaCss</code>、<code>unocss</code>、<code>tailwindcss</code>等，几乎几十种</p>
+<p><strong>unocss 写法如下</strong></p>
+<pre data-role="codeBlock" data-info="jsx" class="language-jsx jsx"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>inline-block h-164 bg-#F2F3F5 rounded-4 p-20 pt-16!<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+  </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>mb-8 text-14 text-#7A8699<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">示例（请按照示例上传真实、有效的集装箱照片）：</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+  </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>f-s<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>relative w-100 h-100 mr-8 last-mr-0<span class="token punctuation">"</span></span> <span class="token attr-name">v-for</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>item in sampleBoxPics<span class="token punctuation">"</span></span> <span class="token attr-name">:key</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>item.id<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>wh-full object-cover<span class="token punctuation">"</span></span>
+        <span class="token attr-name">:src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>`https://filecdn.xxx.com/xxx/box_pic_${item.id}.png`<span class="token punctuation">"</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>absolute bottom-0 w-full f-c bg-#1D2129/80 text-white text-12<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token punctuation">{</span><span class="token punctuation">{</span> item<span class="token punctuation">.</span><span class="token property-access">name</span> <span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+  </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+</code></pre><p>加上 tailwindcss</p>
+<pre data-role="codeBlock" data-info="jsx" class="language-jsx jsx"><code><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>main</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>py-6 px-4 sm:p-6 md:py-10 md:px-8<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+  </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>max-w-4xl mx-auto grid grid-cols-1 lg:max-w-5xl lg:gap-x-20 lg:grid-cols-2<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>relative p-3 col-start-1 row-start-1 flex flex-col-reverse rounded-lg bg-gradient-to-t from-black/75 via-black/0 sm:bg-none sm:row-start-2 sm:p-0 lg:row-start-1<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>h1</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>mt-1 text-lg font-semibold text-white sm:text-slate-900 md:text-2xl dark:sm:text-white<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">Beach House in Collingwood</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>h1</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text-sm leading-4 font-medium text-white sm:text-slate-500 dark:sm:text-slate-400<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">Entire house</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>grid gap-4 col-start-1 col-end-3 row-start-1 sm:mb-6 sm:grid-cols-4 lg:gap-6 lg:col-start-2 lg:row-end-6 lg:row-span-6 lg:mb-0<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/beach-house.jpg<span class="token punctuation">"</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>w-full h-60 object-cover rounded-lg sm:h-52 sm:col-span-2 lg:col-span-full<span class="token punctuation">"</span></span> <span class="token attr-name">loading</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>lazy<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/beach-house-interior-1.jpg<span class="token punctuation">"</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden w-full h-52 object-cover rounded-lg sm:block sm:col-span-2 md:col-span-1 lg:row-start-2 lg:col-span-2 lg:h-32<span class="token punctuation">"</span></span> <span class="token attr-name">loading</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>lazy<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>img</span> <span class="token attr-name">src</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>/beach-house-interior-2.jpg<span class="token punctuation">"</span></span> <span class="token attr-name">alt</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span><span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>hidden w-full h-52 object-cover rounded-lg md:block lg:row-start-2 lg:col-span-2 lg:h-32<span class="token punctuation">"</span></span> <span class="token attr-name">loading</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>lazy<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dl</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>mt-4 text-xs font-medium flex items-center row-start-2 sm:mt-1 sm:row-start-3 md:mt-2.5 lg:row-start-2<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>sr-only<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">Reviews</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dt</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text-indigo-600 flex items-center dark:text-indigo-400<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+        </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>svg</span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>24<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>24<span class="token punctuation">"</span></span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>none<span class="token punctuation">"</span></span> <span class="token attr-name">aria-hidden</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>mr-1 stroke-current dark:stroke-indigo-500<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+          </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span> <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>m12 5 2 5h5l-4 4 2.103 5L12 16l-5.103 3L9 14l-4-4h5l2-5Z<span class="token punctuation">"</span></span>  <span class="token attr-name">stroke-width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>2<span class="token punctuation">"</span></span> <span class="token attr-name">stroke-linecap</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>round<span class="token punctuation">"</span></span> <span class="token attr-name">stroke-linejoin</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>round<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span><span class="token plain-text">
+        </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>svg</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+        </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">4.89 </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>span</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>text-slate-400 font-normal<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">(128)</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>span</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dt</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>sr-only<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">Location</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dt</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>dd</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>flex items-center<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+        </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>svg</span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>2<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>2<span class="token punctuation">"</span></span> <span class="token attr-name">aria-hidden</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>currentColor<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>mx-3 text-slate-300<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+          </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>circle</span> <span class="token attr-name">cx</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span> <span class="token attr-name">cy</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span> <span class="token attr-name">r</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>1<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span><span class="token plain-text">
+        </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>svg</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+        </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>svg</span> <span class="token attr-name">width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>24<span class="token punctuation">"</span></span> <span class="token attr-name">height</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>24<span class="token punctuation">"</span></span> <span class="token attr-name">fill</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>none<span class="token punctuation">"</span></span> <span class="token attr-name">stroke</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>currentColor<span class="token punctuation">"</span></span> <span class="token attr-name">stroke-width</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>2<span class="token punctuation">"</span></span> <span class="token attr-name">stroke-linecap</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>round<span class="token punctuation">"</span></span> <span class="token attr-name">stroke-linejoin</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>round<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>mr-1 text-slate-400 dark:text-slate-500<span class="token punctuation">"</span></span> <span class="token attr-name">aria-hidden</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>true<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+          </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span> <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>M18 11.034C18 14.897 12 19 12 19s-6-4.103-6-7.966C6 7.655 8.819 5 12 5s6 2.655 6 6.034Z<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span><span class="token plain-text">
+          </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>path</span> <span class="token attr-name">d</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>M14 11a2 2 0 1 1-4 0 2 2 0 0 1 4 0Z<span class="token punctuation">"</span></span> <span class="token punctuation">/&gt;</span></span><span class="token plain-text">
+        </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>svg</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+        Collingwood, Ontario
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dd</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>dl</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>mt-4 col-start-1 row-start-3 self-center sm:mt-0 sm:col-start-2 sm:row-start-2 sm:row-span-2 lg:mt-6 lg:col-start-1 lg:row-start-3 lg:row-end-4<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+      </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">type</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>button<span class="token punctuation">"</span></span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>bg-indigo-600 text-white text-sm leading-6 font-medium py-2 px-3 rounded-lg<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">Check availability</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>p</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>mt-4 text-sm leading-6 col-start-1 sm:col-span-2 lg:mt-6 lg:row-start-4 lg:col-span-1 dark:text-slate-400<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+      This sunny and spacious room is for those traveling light and looking for a comfy and cosy place to lay their head for a night or two. This beach house sits in a vibrant neighborhood littered with cafes, pubs, restaurants and supermarkets and is close to all the major attractions such as Edinburgh Castle and Arthur's Seat.
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>p</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+  </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>main</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+
+</span></code></pre><p>twitter<br>
+<img src="./assets/twitter-css.jpg" alt="twitter"><br>
+facebook <img src="./assets/facebook-css.jpg" alt="facebook"></p>
+<h3 id="9--其他">9） 🪧 其他 </h3>
 <p>其实还有很多东西值得去了解，了解之后你就会知道瞎折腾也挺有意思的，那些理论先行和实践先出的技术，产物，也许会有一部分卷入技术革命的浪潮。<br>
 关于其他的关键词：</p>
 <ul>
@@ -194,16 +275,87 @@ Bun在云支持方面明显做的不足。</p>
 <li>OpenGl领域</li>
 <li>就说这些吧...</li>
 </ul>
-<h2 id="个人对web发展趋势的观点">个人对web发展趋势的观点 </h2>
-<h3 id="1-关于-web-component">1. 关于 Web-Component </h3>
+<h2 id="-观点均为个人观点">🔭 观点（均为个人观点） </h2>
+<p>如今的WEB已经笼罩了大片可视区域。</p>
+<h3 id="1--关于-web-component">1) 🔬 关于 Web-Component </h3>
 <p>之前对这东西的了解太浅显了。</p>
 <p>跨平台，永远围绕在发展趋势中，因为JS设计的领域永远在迭代。</p>
-<p>google的Lit前端UI框架</p>
-<h3 id="2-前端-后端和全栈开发之间的界限将越来越模糊">2. 前端、后端和全栈开发之间的界限将越来越模糊 </h3>
+<p>我们管React、Vue、Sevlte这些JS编写出来的库叫什么？<br>
+Vue -&gt; 渐进式框架<br>
+React -&gt; React is the library for web and native <strong>user interfaces</strong>. Web的UI库</p>
+<p>甭管这些理论先行的道理，我们用 这些JS编写出来的产物大多数提供的是UI层面上的便携，后面各自推出了一站式的数据管理模式。</p>
+<p>先后提出的大前端，微前端，以及以拼图🧩UI为口号的低代码，但不管怎样，大部分还是站在巨人的肩膀上做产研。<br>
+大前端做大前端的框架，微前端出现又做微前端的框架，低代码又有低代码的方案，以及原生，H5，微信小程序等等不同平台为适配不同业务又每每重新研发的产物。</p>
+<p>那我为什么觉得web compoent值得关注呢？</p>
+<p>前端的搭配无非JS、css、html，多半部分在跨越平台的基础上已经有了巨人在做转换代码适配操作了，但依旧是通过HTML编译过去的。而浏览器提出的方案就在原HTML中的实践。</p>
+<h2>我觉得<br>
+我认为</h2>
+<p>web compoents 是由jq -&gt; angluar -&gt; react(or Vue) 从概念到标准的时代进步。</p>
+<pre data-role="codeBlock" data-info="js" class="language-javascript js"><code><span class="token keyword keyword-function">function</span> <span class="token function"><span class="token maybe-class-name">Light</span></span> <span class="token punctuation">(</span><span class="token parameter">el<span class="token punctuation">,</span> color</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  <span class="token keyword keyword-this">this</span><span class="token punctuation">.</span><span class="token property-access">el</span> <span class="token operator">=</span> el<span class="token punctuation">;</span>
+  <span class="token keyword keyword-this">this</span><span class="token punctuation">.</span><span class="token property-access">color</span> <span class="token operator">=</span> color<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token class-name">Light</span><span class="token punctuation">.</span><span class="token property-access">prototype</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+  <span class="token function-variable function">render</span><span class="token operator">:</span> <span class="token keyword keyword-function">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword keyword-this">this</span><span class="token punctuation">.</span><span class="token property-access">el</span><span class="token punctuation">.</span><span class="token method function property-access">css</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+      <span class="token literal-property property">background</span><span class="token operator">:</span> <span class="token keyword keyword-this">this</span><span class="token punctuation">.</span><span class="token property-access">color</span>
+    <span class="token punctuation">}</span><span class="token punctuation">)</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-var">var</span> redLight <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token class-name">Light</span><span class="token punctuation">(</span><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'.div1'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'red'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-var">var</span> yellowLight <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token class-name">Light</span><span class="token punctuation">(</span><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'.div2'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'yellow'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-var">var</span> greenLight <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token class-name">Light</span><span class="token punctuation">(</span><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'.div3'</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token string">'green'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-var">var</span> ins <span class="token operator">=</span> <span class="token punctuation">[</span>redLight<span class="token punctuation">,</span> yellowLight<span class="token punctuation">,</span> greenLight<span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+ins<span class="token punctuation">.</span><span class="token method function property-access">forEach</span><span class="token punctuation">(</span><span class="token keyword keyword-function">function</span> <span class="token punctuation">(</span><span class="token parameter">item</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  item<span class="token punctuation">.</span><span class="token method function property-access">render</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><hr>
+<p>进步到<strong>抽象</strong>，我记得当时还是在使用 webstorm， 还是 win的Notepad++</p>
+<p>angular -&gt; 面向对象后的数据与渲染分离(数据的<strong>双向绑定</strong>「这个应该很多人知道吧，单项工作流，双向数据，双倍数据，n倍的麻烦」)</p>
+<pre data-role="codeBlock" data-info="tsx" class="language-tsx tsx"><code><span class="token keyword keyword-var">var</span> app <span class="token operator">=</span> angular<span class="token punctuation">.</span><span class="token method function property-access">module</span><span class="token punctuation">(</span><span class="token string">'lightApp'</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+app<span class="token punctuation">.</span><span class="token method function property-access">controller</span><span class="token punctuation">(</span><span class="token string">'LightCtrl'</span><span class="token punctuation">,</span> <span class="token keyword keyword-function">function</span> <span class="token punctuation">(</span>$scope<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+  $scope<span class="token punctuation">.</span><span class="token property-access">lights</span> <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token string">'red'</span><span class="token punctuation">,</span> <span class="token string">'yellow'</span><span class="token punctuation">,</span> <span class="token string">'green'</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+
+  $scope<span class="token punctuation">.</span><span class="token method-variable function-variable method function property-access">add</span> <span class="token operator">=</span> <span class="token keyword keyword-function">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    $scope<span class="token punctuation">.</span><span class="token property-access">lights</span><span class="token punctuation">.</span><span class="token method function property-access">push</span><span class="token punctuation">(</span><span class="token string">'blue'</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+angular<span class="token punctuation">.</span><span class="token method function property-access">bootstrap</span><span class="token punctuation">(</span><span class="token function">$</span><span class="token punctuation">(</span><span class="token string">'#ng-container'</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token punctuation">[</span><span class="token string">'lightApp'</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// html</span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">ng-controller</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>LightCtrl<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>button</span> <span class="token attr-name">ng-click</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>add()<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">add</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>button</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">class</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">"</span>container<span class="token punctuation">"</span></span><span class="token punctuation">&gt;</span></span><span class="token plain-text">container&lt;div ng-repeat="light in lights track by $index" style="background: {{light}}"&gt;</span><span class="token punctuation">{</span><span class="token punctuation">{</span>light<span class="token punctuation">}</span><span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+</code></pre><hr>
+<p>在到React -&gt; 更高级的抽象 （<strong>现在艺术</strong>）</p>
+<pre data-role="codeBlock" data-info="jsx" class="language-jsx jsx"><code><span class="token keyword keyword-var">var</span> <span class="token maybe-class-name">Light</span> <span class="token operator">=</span> <span class="token maybe-class-name">React</span><span class="token punctuation">.</span><span class="token method function property-access">createClass</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+  <span class="token function-variable function">render</span><span class="token operator">:</span> <span class="token keyword keyword-function">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token keyword keyword-var">var</span> color <span class="token operator">=</span> <span class="token keyword keyword-this">this</span><span class="token punctuation">.</span><span class="token property-access">props</span><span class="token punctuation">.</span><span class="token property-access">color</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-var">var</span> styleObj <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token literal-property property">backgroundColor</span><span class="token operator">:</span> color<span class="token punctuation">}</span><span class="token punctuation">;</span>
+    <span class="token keyword control-flow keyword-return">return</span> <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span> <span class="token attr-name">style</span><span class="token script language-javascript"><span class="token script-punctuation punctuation">=</span><span class="token punctuation">{</span>styleObj<span class="token punctuation">}</span></span><span class="token punctuation">&gt;</span></span><span class="token punctuation">{</span>color<span class="token punctuation">}</span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span><span class="token punctuation">;</span>
+  <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token maybe-class-name">React</span><span class="token punctuation">.</span><span class="token method function property-access">render</span><span class="token punctuation">(</span><span class="token punctuation">(</span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>div</span><span class="token punctuation">&gt;</span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Light</span></span> <span class="token attr-name">color</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">'</span>red<span class="token punctuation">'</span></span> <span class="token punctuation">/&gt;</span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Light</span></span> <span class="token attr-name">color</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">'</span>yellow<span class="token punctuation">'</span></span> <span class="token punctuation">/&gt;</span></span><span class="token plain-text">
+    </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span><span class="token class-name">Light</span></span> <span class="token attr-name">color</span><span class="token attr-value"><span class="token punctuation attr-equals">=</span><span class="token punctuation">'</span>green<span class="token punctuation">'</span></span> <span class="token punctuation">/&gt;</span></span><span class="token plain-text">
+  </span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>div</span><span class="token punctuation">&gt;</span></span>
+<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token dom variable">document</span><span class="token punctuation">.</span><span class="token method function property-access">getElementById</span><span class="token punctuation">(</span><span class="token string">'main'</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>最后关于 Google 写的 <a href="https://lit.dev/docs/components/overview/">Lit</a></p>
+<h3 id="2️-前端-后端和全栈开发之间的界限将越来越模糊">2）😶‍🌫️ 前端、后端和全栈开发之间的界限将越来越模糊 </h3>
 <p>距离我们最近的是nodejs，而更近的是为了做SEO或者SGO加速优化的Nuxt与Next技术（即服务端渲染技术）。<br>
 服务器端渲染（SSR）和静态网站生成（SSG）框架因SEO和性能优势而备受关注，<br>
 在next中可以操作数据库</p>
-<h3 id="3-无障碍性">3. 无障碍性 </h3>
+<h3 id="3️-无障碍性">3）♿️ 无障碍性 </h3>
 <p>我上次在翻MDN时候突然关注到了一个笑的变化， 在Guides中出现了<a href="https://developer.mozilla.org/zh-CN/docs/Web/Accessibility">无障碍</a></p>
 <p>目前有 超过 10 亿人 患有这样或那样的残疾，因此在开发过程中，针对无障碍性的设计不能只是事后才想到的问题。以下是关注无障碍性带来的一些好处：</p>
 <ol>
@@ -213,7 +365,8 @@ Bun在云支持方面明显做的不足。</p>
 <li>**增强用户体验：**针对无障碍性功能的设计，通常能改善所有用户的整体体验，而不仅仅是残疾用户。</li>
 <li><strong>积极的品牌形象</strong>：对无障碍性的承诺体现了社会责任感和包容性，可以对组织的声誉产生积极影响。</li>
 </ol>
-<p>结论：一切的一切都将回归本真。</p>
+<p>以上。<br>
+谢谢!</p>
 
       </div>
       

@@ -31,7 +31,7 @@ console.log(homeDirectory, ReactDom);
 const app = express();
 
 app.get("/", function (_req, res) {
-  res.send(<Component value={10000} />);
+  // res.send(<Component value={10000} />);
   res.send(renderToString(<Component value={10000} />));
   
   // res.send(homeDirectory)
